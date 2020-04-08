@@ -1,2 +1,2 @@
 # doodle-jump
-Doodle Jump Game 
+Doodle Jump Game :computer:
