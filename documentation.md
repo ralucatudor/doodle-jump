@@ -32,13 +32,9 @@ SFML
 
 [SFML Website](https://www.sfml-dev.org/)
 
-[configuring SFML in VS](https://www.sfml-dev.org/tutorials/2.5/start-vc.php)
-
 [GitHub SFML Community FAQ](https://github.com/SFML/SFML/wiki/Community-FAQ#libraries-gui-package)
 
  C++ GUI (Graphical User Interface) 
-  
- ### What IDE? CodeBlocks/ Visual Studio?
  
  ## Overview about Graphical User Interface Implementations
  
