@@ -36,10 +36,10 @@ SFML
 
  C++ GUI (Graphical User Interface) 
  
- ## Overview about Graphical User Interface Implementations
+ ## Overview about implementing a simple SFML game framework in C++
  
  [Coding a Simple SFML Game Framework in C++/ SFML](https://www.youtube.com/watch?v=J_ZnUpXGMmg)\
- [source code](https://github.com/Hopson97/SFML-Game-Framework)
+ [Source Code](https://github.com/Hopson97/SFML-Game-Framework)
  
  Game Engine/ Game Framework - ofc, common for every game
  
@@ -72,6 +72,9 @@ SFML
  Widgets
  
  
+ 
+ 
+ [Managing Game States in C++](http://gamedevgeek.com/tutorials/managing-game-states-in-c/)
  
  
  
