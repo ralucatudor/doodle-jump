@@ -51,7 +51,7 @@ SFML
  
  
  1. Game State
- First thing! Create the main game loop (what actually controls the game - basically an infinete loop that only ends when the game is closed - this loop has 3 main functions: 1.handling player input, 2.updating the game, 3.rendering) and the game state system (organize the code of the different stages of the game into their own classes).
+ First thing! Create the main game loop (what actually controls the game - basically an infinite loop that only ends when the game is closed - this loop has 3 main functions: 1.handling player input, 2.updating the game, 3.rendering) and the game state system (organize the code of the different stages of the game into their own classes).
  
  The different game state classes inherit from the base game state class & implement the **virtual functions** and then the main game loop simply causes functions in the currenttly active game state over and over again **polymorphically** until the game is closed
  
@@ -78,9 +78,8 @@ SFML
  
  
  
- 
- 
- 
+_Note:_
+**Finite State Machines** are a way of expressing the flow from one game State to another game State in a succinct graphical representation.
  
  
  
