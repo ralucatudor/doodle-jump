@@ -1,6 +1,6 @@
 flags_all = -c
 
-SCR_PARAMS = *.cpp
+SCR_PARAMS = src/*.cpp
 OBJ_PARAMS = *.o
 
 LIB_PARAMS = sfml-app -lsfml-graphics -lsfml-window -lsfml-system
