@@ -25,7 +25,7 @@ int main(int argc, char* argv[])
     {
         gameLoop.pollEvents();
         gameLoop.update();
-        gameLoop.redrawFrame({});
+        gameLoop.redrawFrame();
     }
 
     return 0;

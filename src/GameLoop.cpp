@@ -36,12 +36,12 @@ void GameLoop::pollEvents()
     }
 }
 
-void GameLoop::redrawFrame(const std::vector<sf::Drawable>& drawable)
+void GameLoop::redrawFrame()
 {
-    window.clear(sf::Color::Green);
-    std::for_each(drawable.begin(), drawable.end(), [&](const sf::Drawable& item) -> void {
-        window.draw(item);
-    });
+    sf::Texture texture;                          
+    texture.loadFromFile("background.png");
+    sf::Sprite background(texture);
+    window.draw(background);
     window.display();
 }
 

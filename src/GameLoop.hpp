@@ -17,7 +17,7 @@ public:
     void update();
 
     // void redrawFrame();
-    void redrawFrame(const std::vector<sf::Drawable> &drawable);
+    void redrawFrame();
 
     void init();
 
