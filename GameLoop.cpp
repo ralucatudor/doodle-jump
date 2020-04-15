@@ -18,3 +18,33 @@ void GameLoop::init()
     }
 }
 
+void GameLoop::pollEvents()
+{
+    sf::Event event{};
+    while (window.pollEvent(event))
+    {
+        switch (event.type)
+        {
+            case sf::Event::Closed:
+                window.close();
+                break;
+            case sf::Event::MouseMoved:
+                break;
+            default:
+                break;
+        }
+    }
+}
+
+void GameLoop::redrawFrame(const std::vector<sf::Drawable>& drawable)
+{
+    window.clear(sf::Color::Green);
+    std::for_each(drawable.begin(), drawable.end(), [&](const sf::Drawable& item) -> void {
+        window.draw(item);
+    });
+    window.display();
+}
+
+void GameLoop::update()
+{
+}

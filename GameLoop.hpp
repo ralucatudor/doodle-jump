@@ -3,6 +3,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "constants.hpp"
+#include "GameState.hpp"
 
 class GameLoop 
 {
@@ -15,8 +16,8 @@ public:
 
     void update();
 
-    void redrawFrame();
-
+    // void redrawFrame();
+    void redrawFrame(const std::vector<sf::Drawable> &drawable);
 
     void init();
 

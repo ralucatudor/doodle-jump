@@ -21,12 +21,12 @@ int main(int argc, char* argv[])
 
     gameLoop.init();
 
-    // while (gameLoop.getWindow().isOpen())
-    // {
-    //     gameLoop.pollEvents();
-    //     gameLoop.update();
-    //     gameLoop.redrawFrame();
-    // }
+    while (gameLoop.getWindow().isOpen())
+    {
+        gameLoop.pollEvents();
+        gameLoop.update();
+        gameLoop.redrawFrame({});
+    }
 
     return 0;
 }
