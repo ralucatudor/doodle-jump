@@ -39,7 +39,7 @@ void GameLoop::pollEvents()
 void GameLoop::redrawFrame()
 {
     sf::Texture texture;                          
-    texture.loadFromFile("background.png");
+    texture.loadFromFile("img/background.png");
     sf::Sprite background(texture);
     window.draw(background);
     window.display();
