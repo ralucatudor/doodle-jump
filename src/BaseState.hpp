@@ -1,7 +1,7 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
+
 class BaseState
 {
-public:
-    virtual void eventHandler(const sf::Event &event) = 0;
 };
