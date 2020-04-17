@@ -5,6 +5,8 @@
 
 #include "constants.hpp"
 #include "BaseEntity.hpp"
+#include "Doodler.hpp"
+#include "Platform.hpp"
 
 class GameLoop 
 {
@@ -14,7 +16,7 @@ private:
 
     float deltaTime = 0;
 
-    void createWindow();
+    void createWindow() const;
 public:
     GameLoop(sf::RenderWindow&, sf::Clock);
 

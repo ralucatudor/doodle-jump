@@ -2,7 +2,7 @@
 
 GameLoop::GameLoop(sf::RenderWindow& window, sf::Clock clock) : window(window), clock(clock) {}
 
-void GameLoop::createWindow()
+void GameLoop::createWindow() const
 {
     window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
     window.setFramerateLimit(MAX_FPS);
@@ -72,8 +72,19 @@ void GameLoop::redrawFrame(const std::vector<std::shared_ptr<BaseEntity>>& entit
 
 void GameLoop::update(const std::vector<std::shared_ptr<BaseEntity>>& entities)
 {
-    std::for_each(entities.begin(), entities.end(), 
-        [&](const std::shared_ptr<BaseEntity> item) -> void {
+    // std::for_each(entities.begin(), entities.end(), 
+    //     [&](const std::shared_ptr<BaseEntity> item) -> void {
+    //         item->updatePosition(deltaTime);
+    //     });
+
+    std::for_each(entities.begin(), entities.end(), [&](const std::shared_ptr<BaseEntity> item) -> void {
+        if (dynamic_cast<Doodler*>(item.get()))
+        {
             item->updatePosition(deltaTime);
-        });
+        } else if (dynamic_cast<Platform*>(item.get()))
+        {
+            item->updatePosition();
+        }
+    });
+
 }

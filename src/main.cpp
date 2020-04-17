@@ -3,6 +3,7 @@
 #include <iostream>
 #include "GameLoop.hpp"
 #include "Doodler.hpp"
+#include "Platform.hpp"
 
 int main(int argc, char* argv[])
 {
@@ -23,6 +24,13 @@ int main(int argc, char* argv[])
 
     GameLoop gameLoop(window, clock);   // the main game loop - basically an infinite loop that only ends when the game is closed
     gameLoop.init();
+
+    srand(static_cast<unsigned>(time(nullptr)));
+
+    for (size_t i = 0; i < PLATFORM_COUNT; ++i) {
+        std::shared_ptr<Platform> p_platform = std::make_shared<Platform>(Platform());
+        entities.push_back(p_platform);
+    }
 
     std::shared_ptr<Doodler> doodler = std::make_shared<Doodler>(Doodler());
 
