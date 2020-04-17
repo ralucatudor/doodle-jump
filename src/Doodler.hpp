@@ -12,7 +12,7 @@ private:
     const unsigned int radius = 25;
     const unsigned int outlineThickness = 2;
 
-    const float speed = 75;
+    const float jumping_speed = 75;
     float timeAccumulator = 0;
 
     sf::Vector2f position = sf::Vector2f(WINDOW_WIDTH / 2, WINDOW_HEIGHT - radius - outlineThickness);
@@ -28,5 +28,6 @@ public:
 
     ~Doodler() override = default;
 
-    void updatePosition(float deltaTime) override;
+    void updatePosition(const float deltaTime) override;
+    void setLeftRightPosition(const float, const float);
 };

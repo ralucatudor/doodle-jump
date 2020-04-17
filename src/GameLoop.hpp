@@ -4,7 +4,6 @@
 #include <memory>
 
 #include "constants.hpp"
-// #include "GameState.hpp"
 #include "BaseEntity.hpp"
 
 class GameLoop 
@@ -21,7 +20,7 @@ public:
 
     ~GameLoop() = default;
 
-    void pollEvents();
+    void pollEvents(const std::shared_ptr<BaseEntity>&);
 
     void update(const std::vector<std::shared_ptr<BaseEntity>>&);
 

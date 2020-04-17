@@ -7,5 +7,7 @@ private:
     virtual void checkCollision() = 0;
 
 public:
-    virtual void updatePosition(float deltaTime) = 0;
+    std::map<sf::Keyboard::Key, bool> keysMap;
+
+    virtual void updatePosition(const float deltaTime) = 0;
 };

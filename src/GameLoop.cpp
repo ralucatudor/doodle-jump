@@ -15,7 +15,7 @@ void GameLoop::init()
     }
 }
 
-void GameLoop::pollEvents()
+void GameLoop::pollEvents(const std::shared_ptr<BaseEntity>& entity)
 {
     deltaTime = clock.restart().asSeconds();
     sf::Event event{};
@@ -24,8 +24,30 @@ void GameLoop::pollEvents()
             case sf::Event::Closed:
                 window.close();
                 break;
-            case sf::Event::MouseMoved:
+            case sf::Event::KeyPressed: {
+                switch (event.key.code) {
+                    case sf::Keyboard::Left:
+                        entity->keysMap[sf::Keyboard::Left] = true;
+                        break;
+                    case sf::Keyboard::Right:
+                        entity->keysMap[sf::Keyboard::Right] = true;
+                        break;
+                    default:
+                        break;
+                }
                 break;
+            }
+            case sf::Event::KeyReleased:
+                switch (event.key.code) {
+                    case sf::Keyboard::Left:
+                        entity->keysMap[sf::Keyboard::Left] = false;
+                        break;
+                    case sf::Keyboard::Right:
+                        entity->keysMap[sf::Keyboard::Right] = false;
+                        break;
+                    default:
+                        break;
+                }
             default:
                 break;
         }

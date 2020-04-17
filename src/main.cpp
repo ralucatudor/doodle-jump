@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
     entities.push_back(doodler);
 
     while (window.isOpen()) {
-        gameLoop.pollEvents();
+        gameLoop.pollEvents(doodler);
         gameLoop.update(entities);
         gameLoop.redrawFrame(entities);
     }
