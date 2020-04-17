@@ -28,13 +28,13 @@ int main(int argc, char* argv[])
     srand(static_cast<unsigned>(time(nullptr)));
 
     for (size_t i = 0; i < PLATFORM_COUNT; ++i) {
-        std::shared_ptr<Platform> p_platform = std::make_shared<Platform>(Platform());
-        entities.push_back(p_platform);
+        std::shared_ptr<Platform> platform = std::make_shared<Platform>(Platform());
+        entities.emplace_back(platform);
     }
 
     std::shared_ptr<Doodler> doodler = std::make_shared<Doodler>(Doodler());
 
-    entities.push_back(doodler);
+    entities.emplace_back(doodler);
 
     while (window.isOpen()) {
         gameLoop.pollEvents(doodler);

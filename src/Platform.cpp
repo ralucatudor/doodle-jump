@@ -1,13 +1,23 @@
 #include "Platform.hpp"
 
+#include <random>
+
 void Platform::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
     target.draw(shape, states);
 }
 
 Platform::Platform() {
-    position.x = rand() % WINDOW_WIDTH;
-    position.y = rand() % WINDOW_HEIGHT;
+    std::random_device rand_dev;
+    std::mt19937 generator(rand_dev());
+    std::uniform_int_distribution<int> range(1, 100000);
+
+    position.x = range(generator) % WINDOW_WIDTH;
+    position.y = range(generator) % WINDOW_HEIGHT;
+
+    // ----------------------------------
+    // position.x = rand() % WINDOW_WIDTH;
+    // position.y = rand() % WINDOW_HEIGHT;
 
     if (position.x + size.x > WINDOW_WIDTH) {
         position.x -= size.x;
