@@ -63,7 +63,7 @@ void GameLoop::redrawFrame(const std::vector<std::shared_ptr<BaseEntity>>& entit
     window.draw(background);
 
     std::for_each(entities.begin(), entities.end(), 
-        [&](const std::shared_ptr<BaseEntity> item) -> void {
+        [&](const std::shared_ptr<BaseEntity>& item) -> void {
             window.draw(*item);
         });
 
@@ -77,7 +77,7 @@ void GameLoop::update(const std::vector<std::shared_ptr<BaseEntity>>& entities)
     //         item->updatePosition(deltaTime);
     //     });
 
-    std::for_each(entities.begin(), entities.end(), [&](const std::shared_ptr<BaseEntity> item) -> void {
+    std::for_each(entities.begin(), entities.end(), [&](const std::shared_ptr<BaseEntity>& item) -> void {
         if (dynamic_cast<Doodler*>(item.get()))
         {
             item->updatePosition(deltaTime);
