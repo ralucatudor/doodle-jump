@@ -9,7 +9,7 @@
 class Doodler : public BaseEntity
 {
 private:
-    const unsigned int radius = 25;
+    const unsigned int radius = 20;
     const unsigned int outlineThickness = 2;
 
     const float jumping_speed = 75;

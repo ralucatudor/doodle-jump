@@ -39,11 +39,17 @@ void Doodler::checkCollision()
 
 void Doodler::setLeftRightPosition(const float move_speed, const float deltaTime)
 {
-    // check right collision before updating
-    if (keysMap[sf::Keyboard::Right] && position.x + radius + outlineThickness < WINDOW_WIDTH) {
+    if (keysMap[sf::Keyboard::Right]) {
+        // check right collision before updating
+        if (position.x + radius + outlineThickness > WINDOW_WIDTH)
+            position.x = 0 + radius + outlineThickness;
         position.x += move_speed * deltaTime;
-    } // check left collision before updating
-    else if (keysMap[sf::Keyboard::Left] && position.x - radius - outlineThickness > 0) {
-        position.x -= move_speed* deltaTime;
+    } else {
+        // check left collision before updating
+        if (keysMap[sf::Keyboard::Left]) {
+            if (position.x - radius - outlineThickness < 0)
+                position.x = WINDOW_WIDTH - radius - outlineThickness;
+            position.x -= move_speed * deltaTime;
+        }
     }
 }
