@@ -4,36 +4,43 @@
 
 void Platform::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-    target.draw(shape, states);
+    target.draw(platformSprite, states);
 }
 
-Platform::Platform() {
+Platform::Platform() 
+{
+    platformTexture.loadFromFile("img/platform.png");
+    platformSprite.setTexture(platformTexture);
+    platformSprite.setPosition(position);
+
     std::random_device rand_dev;
     std::mt19937 generator(rand_dev());
-    std::uniform_int_distribution<int> range(1, 100000);
+    std::uniform_int_distribution<unsigned> x(0, WINDOW_WIDTH - platformTexture.getSize().x);
+    std::uniform_int_distribution<unsigned> y(0, WINDOW_HEIGHT - 30);
 
-    position.x = range(generator) % WINDOW_WIDTH;
-    position.y = range(generator) % WINDOW_HEIGHT;
+    position.x = x(generator);
+    position.y = y(generator);
+}
 
-    // ----------------------------------
-    // position.x = rand() % WINDOW_WIDTH;
-    // position.y = rand() % WINDOW_HEIGHT;
-
-    if (position.x + size.x > WINDOW_WIDTH) {
-        position.x -= size.x;
-    }
-
-    if (position.x - size.x < 0) {
-        position.x += size.x;
-    }
-
-    shape.setSize(size);
-    shape.setFillColor(sf::Color::Green);
-    shape.setOutlineColor(sf::Color::Black);
-    shape.setOutlineThickness(outlineThickness);
+Platform::Platform(const Platform& ob) 
+{
+    platformTexture = ob.platformTexture;
+    platformSprite = ob.platformSprite;
+    position = ob.position;
+    platformSprite.setTexture(platformTexture);
 }
 
 void Platform::updatePosition()
 {
-    shape.setPosition(position);
+    platformSprite.setPosition(position);
+    setPosition(position);
+}
+
+sf::Vector2f& Platform::getPosition()
+{
+    return position;
+} 
+
+sf::Vector2u Platform::getTextureSize() {
+    return platformTexture.getSize();
 }

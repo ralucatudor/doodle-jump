@@ -3,53 +3,82 @@
 // Overriding sf::Drawable::draw
 void Doodler::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
-    target.draw(circle, states);
+    target.draw(doodlerSprite, states);
 }
 
 Doodler::Doodler()
 {
-    circle.setRadius(radius);
-    circle.setOrigin(radius, radius);
-    circle.setPosition(position);
-    circle.setFillColor(sf::Color::White);
-    circle.setOutlineColor(sf::Color::Black);
-    circle.setOutlineThickness(outlineThickness);
+    doodlerTexture.loadFromFile("img/doodle.png");
+    doodlerSprite.setTexture(doodlerTexture);
+    doodlerSprite.setPosition(position);
 
     keysMap[sf::Keyboard::Left] = false;
     keysMap[sf::Keyboard::Right] = false;
 }
 
-void Doodler::updatePosition(const float deltaTime)
+Doodler::Doodler(const Doodler& ob) 
 {
-    checkCollision();   // bottom collision 
-    timeAccumulator += deltaTime * TIME_ACCELERATOR;
-    double nextY = position.y - jumping_speed * timeAccumulator + 0.7 * STANDARD_GRAVITY * std::pow(timeAccumulator, 2);
-    const sf::Vector2f nextPosition = {position.x, static_cast<float>(nextY)};
-    circle.setPosition(nextPosition);
-    setLeftRightPosition(MOVE_SPEED, deltaTime);
+    doodlerTexture = ob.doodlerTexture;
+    doodlerSprite = ob.doodlerSprite;
+    doodlerSprite.setTexture(doodlerTexture);
+    position = ob.position;
+    deltaY = ob.deltaY;
+    timeAccumulator = ob.timeAccumulator;
 }
 
-void Doodler::checkCollision()
+void Doodler::updatePosition(const float deltaTime)
 {
-    const float currentBottomPosition = circle.getPosition().y + radius + outlineThickness;
-    if (currentBottomPosition > WINDOW_HEIGHT) {    //is below zero level
-        timeAccumulator = 0;
-    }
+    //checkCollision(); //I no longer need bottom collision 
+    setLeftRightPosition(MOVE_SPEED, deltaTime);    // set position.x
+    timeAccumulator += deltaTime * TIME_ACCELERATOR;
+    double nextY = position.y - jumping_speed * timeAccumulator + 0.6 * STANDARD_GRAVITY * std::pow(timeAccumulator, 2);
+    
+    setDeltaY(nextY);
+
+    const sf::Vector2f nextPosition = {position.x, static_cast<float>(nextY)};
+    actualPosition = nextPosition;
+
+    doodlerSprite.setPosition(nextPosition);
+    setPosition(nextPosition);
+}
+
+void Doodler::updateCollision()
+{
+    timeAccumulator = 0;
+    position.y = doodlerSprite.getPosition().y;
 }
 
 void Doodler::setLeftRightPosition(const float move_speed, const float deltaTime)
 {
     if (keysMap[sf::Keyboard::Right]) {
         // check right collision before updating
-        if (position.x + radius + outlineThickness > WINDOW_WIDTH)
-            position.x = 0 + radius + outlineThickness;
+        if (position.x + doodlerTexture.getSize().x > WINDOW_WIDTH)
+            position.x = 0;
         position.x += move_speed * deltaTime;
     } else {
         // check left collision before updating
         if (keysMap[sf::Keyboard::Left]) {
-            if (position.x - radius - outlineThickness < 0)
-                position.x = WINDOW_WIDTH - radius - outlineThickness;
+            if (position.x < 0)
+                position.x = WINDOW_WIDTH - doodlerTexture.getSize().x;
             position.x -= move_speed * deltaTime;
         }
     }
+}
+
+void Doodler::setDeltaY(const float nextY) 
+{
+    deltaY = position.y - nextY;
+}
+
+float Doodler::getDeltaY() {
+    return deltaY;
+}
+
+sf::Vector2f& Doodler::getPosition()
+{
+    return actualPosition;
+}
+
+sf::Vector2u Doodler::getTextureSize() {
+    return doodlerTexture.getSize();
 }

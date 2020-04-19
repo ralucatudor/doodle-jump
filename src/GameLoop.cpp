@@ -1,18 +1,24 @@
 #include "GameLoop.hpp"
 
-GameLoop::GameLoop(sf::RenderWindow& window, sf::Clock clock) : window(window), clock(clock) {}
-
-void GameLoop::createWindow() const
-{
+void GameLoop::createWindow()
+{   
     window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
-    window.setFramerateLimit(MAX_FPS);
+    window.setFramerateLimit(MAX_FPS);    
+}
+
+sf::RenderWindow& GameLoop::getWindow()
+{
+    return window;
 }
 
 void GameLoop::init()
 {
     if (!window.isOpen()) {
         createWindow();
-    }
+    }        
+                            
+    backgroundTexture.loadFromFile("img/background.png");
+    backgroundSprite.setTexture(backgroundTexture);
 }
 
 void GameLoop::pollEvents(const std::shared_ptr<BaseEntity>& entity)
@@ -54,29 +60,8 @@ void GameLoop::pollEvents(const std::shared_ptr<BaseEntity>& entity)
     }
 }
 
-void GameLoop::redrawFrame(const std::vector<std::shared_ptr<BaseEntity>>& entities)
-{
-    //window.clear(sf::Color::Cyan);
-    sf::Texture texture;                          
-    texture.loadFromFile("img/background.png");
-    sf::Sprite background(texture);
-    window.draw(background);
-
-    std::for_each(entities.begin(), entities.end(), 
-        [&](const std::shared_ptr<BaseEntity>& item) -> void {
-            window.draw(*item);
-        });
-
-    window.display();
-}
-
 void GameLoop::update(const std::vector<std::shared_ptr<BaseEntity>>& entities)
 {
-    // std::for_each(entities.begin(), entities.end(), 
-    //     [&](const std::shared_ptr<BaseEntity> item) -> void {
-    //         item->updatePosition(deltaTime);
-    //     });
-
     std::for_each(entities.begin(), entities.end(), [&](const std::shared_ptr<BaseEntity>& item) -> void {
         if (dynamic_cast<Doodler*>(item.get()))
         {
@@ -86,5 +71,17 @@ void GameLoop::update(const std::vector<std::shared_ptr<BaseEntity>>& entities)
             item->updatePosition();
         }
     });
+}
 
+void GameLoop::redrawFrame(const std::vector<std::shared_ptr<BaseEntity>>& entities)
+{
+    //window.clear(sf::Color::Cyan);
+    window.draw(backgroundSprite);
+
+    std::for_each(entities.begin(), entities.end(), 
+        [&](const std::shared_ptr<BaseEntity>& item) -> void {
+            window.draw(*item);
+        });
+
+    window.display();
 }

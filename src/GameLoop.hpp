@@ -11,17 +11,16 @@
 class GameLoop 
 {
 private:
-    sf::RenderWindow& window;
+    sf::RenderWindow window;
+    sf::Texture backgroundTexture;
+    sf::Sprite backgroundSprite;
+
     sf::Clock clock;
 
     float deltaTime = 0;
 
-    void createWindow() const;
+    void createWindow();
 public:
-    GameLoop(sf::RenderWindow&, sf::Clock);
-
-    ~GameLoop() = default;
-
     void pollEvents(const std::shared_ptr<BaseEntity>&);
 
     void update(const std::vector<std::shared_ptr<BaseEntity>>&);
@@ -29,4 +28,6 @@ public:
     void redrawFrame(const std::vector<std::shared_ptr<BaseEntity>>&);
 
     void init();
+
+    sf::RenderWindow& getWindow();
 };

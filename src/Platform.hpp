@@ -5,19 +5,23 @@
 
 class Platform : public BaseEntity
 {
-    sf::RectangleShape shape;
+    sf::Texture platformTexture;
+    sf::Sprite platformSprite;
+    
     sf::Vector2f position;
 
-    const sf::Vector2f size = sf::Vector2f(40, 10);
-    const unsigned outlineThickness = 2;
-
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
-
 public:
     Platform();
 
     ~Platform() override = default;
 
+    Platform(const Platform& ob); 
+
     void updatePosition() override;
+
+    sf::Vector2f& getPosition() override; 
+
+    sf::Vector2u getTextureSize() override;
 };
 

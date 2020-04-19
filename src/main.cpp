@@ -5,6 +5,8 @@
 #include "Doodler.hpp"
 #include "Platform.hpp"
 
+#include "GameEngine.hpp"
+
 int main(int argc, char* argv[])
 {
     if (argc > 1) {
@@ -19,13 +21,10 @@ int main(int argc, char* argv[])
 
     std::vector<std::shared_ptr<BaseEntity>> entities;
 
-    sf::RenderWindow window;
-    sf::Clock clock;
-
-    GameLoop gameLoop(window, clock);   // the main game loop - basically an infinite loop that only ends when the game is closed
+    GameLoop gameLoop;
     gameLoop.init();
 
-    srand(static_cast<unsigned>(time(nullptr)));
+    GameEngine gameEngine;
 
     for (size_t i = 0; i < PLATFORM_COUNT; ++i) {
         std::shared_ptr<Platform> platform = std::make_shared<Platform>(Platform());
@@ -36,9 +35,10 @@ int main(int argc, char* argv[])
 
     entities.emplace_back(doodler);
 
-    while (window.isOpen()) {
+    while (gameLoop.getWindow().isOpen()) {
         gameLoop.pollEvents(doodler);
         gameLoop.update(entities);
+        gameEngine.checkCollision(entities);
         gameLoop.redrawFrame(entities);
     }
 
