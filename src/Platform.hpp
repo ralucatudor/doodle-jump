@@ -23,5 +23,7 @@ public:
     sf::Vector2f& getPosition() override; 
 
     sf::Vector2u getTextureSize() override;
+
+    //float getDeltaY() = delete;
 };
 

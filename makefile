@@ -6,7 +6,7 @@ OBJ_PARAMS = *.o
 LIB_PARAMS = sfml-app -lsfml-graphics -lsfml-window -lsfml-system
 
 all:
-	g++ $(flags_all) $(SCR_PARAMS) 
+	g++ $(flags_all) -std=c++11 $(SCR_PARAMS) 
 	g++ $(OBJ_PARAMS) -o $(LIB_PARAMS) 
 	./sfml-app
 

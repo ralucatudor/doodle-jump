@@ -42,4 +42,7 @@ public:
     float getDeltaY() override;
 
     sf::Vector2u getTextureSize() override;
+
+
+    void testupdate();
 };
