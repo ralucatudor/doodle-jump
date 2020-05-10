@@ -28,8 +28,6 @@ int main(int argc, char* argv[])
     GameLoop gameLoop;
     gameLoop.init();
 
-    GameEngine gameEngine;
-
     for (size_t i = 0; i < PLATFORM_COUNT; ++i) {
         std::shared_ptr<Platform> platform = std::make_shared<Platform>(Platform());
         entities.emplace_back(platform);
@@ -38,6 +36,8 @@ int main(int argc, char* argv[])
     std::shared_ptr<Doodler> doodler = std::make_shared<Doodler>(Doodler());
 
     entities.emplace_back(doodler);
+    
+    GameEngine gameEngine;
 
     while (gameLoop.getWindow().isOpen()) {
         gameLoop.pollEvents(doodler);

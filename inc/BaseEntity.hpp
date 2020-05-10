@@ -8,8 +8,6 @@ class BaseEntity : public sf::Drawable, public sf::Transformable
 {
 // maybe declare texture and sprite protected?
 public:
-    float dy;
-
     std::map<sf::Keyboard::Key, bool> keysMap;
 
     virtual void updatePosition(const float) {}
@@ -17,10 +15,6 @@ public:
 
     virtual sf::Vector2f& getPosition() = 0;
 
-    virtual float getDeltaY() {return 0.f;};
-
     virtual sf::Vector2u getTextureSize() = 0;
-
-    virtual void setUpDownPosition() {};
 };
 

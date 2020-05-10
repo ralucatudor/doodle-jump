@@ -5,18 +5,15 @@
 
 void GameEngine::checkCollision(std::vector<std::shared_ptr<BaseEntity>>& entities)
 {
-    // std::shared_ptr<BaseEntity> doodler2 = *std::find_if(entities.begin(), entities.end(), isDoodler);
+    std::shared_ptr<BaseEntity> doodlerEntity = *std::find_if(entities.begin(), entities.end(), isDoodler);
 
-    // std::shared_ptr<Doodler> actualDoodler (std::dynamic_pointer_cast<Doodler>(doodler2));
-    // actualDoodler->sayHello();
-
-    doodler = *std::find_if(entities.begin(), entities.end(), isDoodler);
+    //std::shared_ptr<Doodler> doodler (std::dynamic_pointer_cast<Doodler>(doodlerEntity)); 
+    doodler =std::dynamic_pointer_cast<Doodler>(doodlerEntity);  
 
     std::random_device rand_dev;
     std::mt19937 generator(rand_dev());
 
     doodler->dy += 0.2;
-	// playerY += dy;
     doodler->setUpDownPosition();
 
     if (doodler->getPosition().y < DOODLER_HEIGHT) {
@@ -24,33 +21,28 @@ void GameEngine::checkCollision(std::vector<std::shared_ptr<BaseEntity>>& entiti
 		for (auto& entity : entities) { 
             //if (dynamic_cast<Platform*>(entity.get())) {
             if (std::dynamic_pointer_cast<Platform>(entity)) {
-			    //entity->getPosition().y += (doodler->getDeltaY()) / 20;//dy;  // vertical translation
-                entity->getPosition().y -= doodler->dy;
-                if (entity->getPosition().y > WINDOW_HEIGHT) // set new platform on the top
-                {
-                    entity->getPosition().y = 0;
+                entity->getPosition().y -= doodler->dy;     // vertical translation
+                if (entity->getPosition().y > WINDOW_HEIGHT) {// set new platform on the top
+                    entity->getPosition().y = 0;        // !!!!!!!!!!!!! AICI SCHIMBA IN SETTER, NU LASA GETTER CU REFERINTA
                     std::uniform_int_distribution<unsigned> x(0, WINDOW_WIDTH - entity->getTextureSize().x);
-                    entity->getPosition().x = x(generator);				
+                    entity->getPosition().x = x(generator);		// !!!!!!!!!!!!! ANALOG		
                 }
             }
         }
 	}
-    //std::cout << doodler->getDeltaY()<<'\n';
 
-    std::for_each(entities.begin(), entities.end(), applyForEach);
+    std::for_each(entities.begin(), entities.end(), processCollisionForEach); 
 }
 
 void GameEngine::processCollision(const std::shared_ptr<BaseEntity>& entity)
 {
     if (doesIntersect(entity)) {
-        //doodler->updateCollision();
         doodler->dy = -10;
     }
 }
 
 bool GameEngine::doesIntersect(const std::shared_ptr<BaseEntity>& platform) const
 {
-    //std::cout << doodler->getPosition().x << ' '<<doodler->getPosition().y<<'\n';
     if ((doodler->getPosition().x + DOODLER_RIGHT_BOUNDING_BOX > platform->getPosition().x)
         && (doodler->getPosition().x + DOODLER_LEFT_BOUNDING_BOX < platform->getPosition().x + platform->getTextureSize().x) 
         && (doodler->getPosition().y + DOODLER_BOTTOM_BOUNDING_BOX > platform->getPosition().y)

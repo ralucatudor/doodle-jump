@@ -75,7 +75,6 @@ void GameLoop::update(const std::vector<std::shared_ptr<BaseEntity>>& entities)
 
 void GameLoop::redrawFrame(const std::vector<std::shared_ptr<BaseEntity>>& entities)
 {
-    //window.clear(sf::Color::Cyan);
     window.draw(backgroundSprite);
 
     std::for_each(entities.begin(), entities.end(), 

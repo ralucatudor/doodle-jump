@@ -16,7 +16,7 @@ private:
 
     sf::Texture doodlerTexture;
     sf::Sprite doodlerSprite;
-
+    
     // Overriding sf::Drawable::draw
     void draw(sf::RenderTarget&, sf::RenderStates) const override;
 
@@ -24,6 +24,8 @@ private:
 
     void setDeltaY(const float);
 public:
+    float dy;
+
     Doodler();
 
     ~Doodler() override = default;
@@ -34,14 +36,9 @@ public:
 
     sf::Vector2f& getPosition() override; 
 
-    float getDeltaY() override;
+    float getDeltaY();
 
     sf::Vector2u getTextureSize() override;
 
-
     void setUpDownPosition();
-
-    void sayHello() {
-        std::cout << "oh yes\n";
-    }
 };
