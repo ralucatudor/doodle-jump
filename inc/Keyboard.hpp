@@ -15,12 +15,15 @@ public:
 
 private:
     keysMapType keysMap;
-
-    void leftKeyPressed(const sf::Keyboard::Key& key);
     
-    void rightKeyPressed(const sf::Keyboard::Key& key);
+    Keyboard& operator+=(const sf::Keyboard::Key &key);  // KeyPressed
+    Keyboard& operator-=(const sf::Keyboard::Key& key);  // KeyReleased
 
-    void leftKeyReleased(const sf::Keyboard::Key& key);
+    // void leftKeyPressed(const sf::Keyboard::Key& key);
+    
+    // void rightKeyPressed(const sf::Keyboard::Key& key);
 
-    void rightKeyReleased(const sf::Keyboard::Key& key);
+    // void leftKeyReleased(const sf::Keyboard::Key& key);
+
+    // void rightKeyReleased(const sf::Keyboard::Key& key);
 };
