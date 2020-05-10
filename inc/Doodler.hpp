@@ -1,11 +1,10 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include <cmath>
-#include <iostream>
 
 #include "constants.hpp"
 #include "BaseEntity.hpp"
+#include "Keyboard.hpp"
 
 class Doodler : public BaseEntity
 {
@@ -24,6 +23,8 @@ private:
 
     void setDeltaY(const float);
 public:
+    Keyboard keyboardInput;     
+
     float dy;
 
     Doodler();

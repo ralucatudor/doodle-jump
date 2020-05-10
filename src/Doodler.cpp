@@ -11,9 +11,6 @@ Doodler::Doodler()
     doodlerTexture.loadFromFile("res/img/doodle.png");
     doodlerSprite.setTexture(doodlerTexture);
     doodlerSprite.setPosition(position);
-
-    keysMap[sf::Keyboard::Left] = false;
-    keysMap[sf::Keyboard::Right] = false;
 }
 
 Doodler::Doodler(const Doodler& ob)         // copy constructor
@@ -34,14 +31,14 @@ void Doodler::updatePosition(const float deltaTime)
 
 void Doodler::setLeftRightPosition(const float move_speed, const float deltaTime)
 {
-    if (keysMap[sf::Keyboard::Right]) {
+    if (keyboardInput.getKeysMap()[sf::Keyboard::Right]) {
         // check right collision before updating
         if (position.x + doodlerTexture.getSize().x > WINDOW_WIDTH)
             position.x = 0;
         position.x += 4;
     } else {
-        // check left collision before updating
-        if (keysMap[sf::Keyboard::Left]) {
+        if (keyboardInput.getKeysMap()[sf::Keyboard::Left]) {
+            // check left collision before updating
             if (position.x < 0)
                 position.x = WINDOW_WIDTH - doodlerTexture.getSize().x;
             position.x -= 4;
@@ -54,7 +51,8 @@ void Doodler::setDeltaY(const float nextY)
     deltaY = position.y - nextY;
 }
 
-float Doodler::getDeltaY() {
+float Doodler::getDeltaY() 
+{
     return deltaY;
 }
 
@@ -63,10 +61,12 @@ sf::Vector2f& Doodler::getPosition()
     return position;
 }
 
-sf::Vector2u Doodler::getTextureSize() {
+sf::Vector2u Doodler::getTextureSize() 
+{
     return doodlerTexture.getSize();
 }
 
-void Doodler::setUpDownPosition() {
+void Doodler::setUpDownPosition() 
+{
     position.y += dy;
 }

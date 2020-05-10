@@ -33,7 +33,6 @@ Platform::Platform(const Platform& ob)
 void Platform::updatePosition()
 {
     platformSprite.setPosition(position);
-    setPosition(position);
 }
 
 sf::Vector2f& Platform::getPosition()
@@ -41,6 +40,7 @@ sf::Vector2f& Platform::getPosition()
     return position;
 } 
 
-sf::Vector2u Platform::getTextureSize() {
+sf::Vector2u Platform::getTextureSize() 
+{
     return platformTexture.getSize();
 }

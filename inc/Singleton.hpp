@@ -1,7 +1,6 @@
-#ifndef SINGLETON_
-#define SINGLETON_
+#pragma once
 
-#include <bits/stdc++.h>
+#include <iostream>
 
 class Singleton
 {
@@ -22,5 +21,3 @@ public:
         return *this;
     }
 };
-
-#endif // SINGLETON_

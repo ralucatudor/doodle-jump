@@ -8,8 +8,6 @@ class BaseEntity : public sf::Drawable, public sf::Transformable
 {
 // maybe declare texture and sprite protected?
 public:
-    std::map<sf::Keyboard::Key, bool> keysMap;
-
     virtual void updatePosition(const float) {}
     virtual void updatePosition() {}
 

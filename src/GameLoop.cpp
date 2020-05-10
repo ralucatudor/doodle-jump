@@ -21,41 +21,16 @@ void GameLoop::init()
     backgroundSprite.setTexture(backgroundTexture);
 }
 
-void GameLoop::pollEvents(const std::shared_ptr<BaseEntity>& entity)
+void GameLoop::pollEvents(const std::shared_ptr<Doodler>& entity)
 {
     deltaTime = clock.restart().asSeconds();
-    sf::Event event{};
+    sf::Event event;
     while (window.pollEvent(event)) {
-        switch (event.type) {
-            case sf::Event::Closed:
-                window.close();
-                break;
-            case sf::Event::KeyPressed: {
-                switch (event.key.code) {
-                    case sf::Keyboard::Left:
-                        entity->keysMap[sf::Keyboard::Left] = true;
-                        break;
-                    case sf::Keyboard::Right:
-                        entity->keysMap[sf::Keyboard::Right] = true;
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            }
-            case sf::Event::KeyReleased:
-                switch (event.key.code) {
-                    case sf::Keyboard::Left:
-                        entity->keysMap[sf::Keyboard::Left] = false;
-                        break;
-                    case sf::Keyboard::Right:
-                        entity->keysMap[sf::Keyboard::Right] = false;
-                        break;
-                    default:
-                        break;
-                }
-            default:
-                break;
+        if (event.type == sf::Event::Closed) {
+            window.close();
+        }
+        else {
+            entity->keyboardInput.eventHandler(event);
         }
     }
 }

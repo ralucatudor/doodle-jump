@@ -21,7 +21,7 @@ private:
 
     void createWindow();
 public:
-    void pollEvents(const std::shared_ptr<BaseEntity>&);
+    void pollEvents(const std::shared_ptr<Doodler>&);
 
     void update(const std::vector<std::shared_ptr<BaseEntity>>&);
 
