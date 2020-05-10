@@ -2,21 +2,12 @@
 
 #include <random>
 
-#include <iostream>
-
 void GameEngine::checkCollision(std::vector<std::shared_ptr<BaseEntity>>& entities)
 {
     std::shared_ptr<BaseEntity> doodlerEntity = *std::find_if(entities.begin(), entities.end(), isDoodler);
 
     //std::shared_ptr<Doodler> doodler (std::dynamic_pointer_cast<Doodler>(doodlerEntity)); 
     doodler =std::dynamic_pointer_cast<Doodler>(doodlerEntity);  
-
-    if (doodler->getPosition().y == DOODLER_HEIGHT && doodler->dy < (-1.62)) {
-        Score addScore(1);
-		totalScore = totalScore + addScore;
-		//scoreText.setString("Score: " + std::to_string(score));
-	}
-    std::cout << totalScore.getScore() << '\n';
 
     std::random_device rand_dev;
     std::mt19937 generator(rand_dev());

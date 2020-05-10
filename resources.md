@@ -13,6 +13,7 @@ What I’ve stumbled through during the process of implementing this game:
 - munmap_chunk(): invalid pointer error in C++
 - std::dynamic_pointer_cast [see here](http://www.cplusplus.com/reference/memory/dynamic_pointer_cast/)
 - *.h or *.hpp for your class definitions [see here](https://stackoverflow.com/questions/152555/h-or-hpp-for-your-class-definitions)
+- “Undefined reference to” template class constructor [see here](https://stackoverflow.com/questions/8752837/undefined-reference-to-template-class-constructor)
 
 SFML things I’ve stumbled through:
 ---

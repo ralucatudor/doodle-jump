@@ -6,8 +6,6 @@
 #include "Doodler.hpp"
 #include "Platform.hpp"
 
-#include "Score.hpp"
-
 template<typename T, typename R>
 using Lambda = std::function<T(const std::shared_ptr<R> &)>;
 
@@ -16,8 +14,6 @@ class GameEngine
 {
 public:
     void checkCollision(std::vector<std::shared_ptr<BaseEntity>>& entities);
-
-    Score totalScore;
 private:
     std::shared_ptr<Doodler> doodler;
 

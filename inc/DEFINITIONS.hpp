@@ -8,6 +8,7 @@ static const unsigned int WINDOW_WIDTH = 400;
 static const unsigned int WINDOW_HEIGHT = 600;
 static const std::string WINDOW_TITLE = "Doodle Jump";
 static const unsigned int MAX_FPS = 60; // frame limit
+const std::string FONT_FILEPATH = "res/font/arial.ttf";
 
 // Game
 static const float MOVE_SPEED = 300;    // for left-right movement

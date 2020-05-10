@@ -1,18 +1,29 @@
 #pragma once
 
-// add template
+#include <SFML/Graphics.hpp>
+
+#include "DEFINITIONS.hpp"
+
+template<typename T>
 class Score     // Score Counter class
 {
 private:
-    int score;
+    T score;
+    sf::Text scoreText;
 public:
-    Score(int score = 0);
+    Score(T score = 0);
+    Score(const Score<T>& ob);
 
-    int getScore() const;
+    T getScore() const;
 
     // Overload + operator. When incrementing the score - increment the total score with 
     // another ScoreCounter instance having the current obtained score as value.
+    // template<typename U>
+    Score<T>& operator=(const Score<T>& );
+    // template<typename U>
+    Score<T> operator + (Score<T> const&);
 
-    Score& operator=(const Score& );
-    Score operator + (Score const&);
+    void updateScoreText();
+
+    sf::Text& getScoreText(); //const;
 };

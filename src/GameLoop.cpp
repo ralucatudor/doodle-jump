@@ -34,7 +34,7 @@ void GameLoop::pollEvents(const std::shared_ptr<Doodler>& doodler)
         else {
             doodler->keyboardInput.inputHandler(event);
         }
-    }
+    }    
 }
 
 void GameLoop::update(const std::vector<std::shared_ptr<BaseEntity>>& entities)
@@ -49,9 +49,28 @@ void GameLoop::update(const std::vector<std::shared_ptr<BaseEntity>>& entities)
     });
 }
 
+void GameLoop::updateScore(const std::shared_ptr<Doodler>& doodler)
+{
+    if (doodler->getPosition().y == DOODLER_HEIGHT && doodler->dy < (-1.62)) {
+        Score<float> addScore(0.5);
+		totalScore = totalScore + addScore;
+	}
+}
+
 void GameLoop::redrawFrame(const std::vector<std::shared_ptr<BaseEntity>>& entities)
 {
     window.draw(backgroundSprite);
+    // ----
+    sf::Font font;
+	font.loadFromFile(FONT_FILEPATH);
+    sf::Text scoreText;
+	scoreText.setFont(font);
+    scoreText.setString("Score: " + std::to_string(totalScore.getScore()));
+	scoreText.setCharacterSize(40);
+	scoreText.setFillColor(sf::Color::Red);
+    
+    window.draw(scoreText);
+    //std::cout << totalScore.getScore() <<'\n'; 
 
     std::for_each(entities.begin(), entities.end(), 
         [&](const std::shared_ptr<BaseEntity>& item) -> void {

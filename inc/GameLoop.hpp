@@ -8,6 +8,8 @@
 #include "Doodler.hpp"
 #include "Platform.hpp"
 
+#include "Score.hpp"
+
 class GameLoop 
 {
 private:
@@ -20,10 +22,14 @@ private:
     float deltaTime = 0;
 
     void createWindow();
+
+    Score<float> totalScore;
 public:
     void pollEvents(const std::shared_ptr<Doodler>&);
 
     void update(const std::vector<std::shared_ptr<BaseEntity>>&);
+
+    void updateScore(const std::shared_ptr<Doodler>& );
 
     void redrawFrame(const std::vector<std::shared_ptr<BaseEntity>>&);
 

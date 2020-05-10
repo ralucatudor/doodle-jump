@@ -47,6 +47,7 @@ int main(int argc, char* argv[])
     while (gameLoop.getWindow().isOpen()) {
         gameLoop.pollEvents(doodler);
         gameLoop.update(entities);
+        gameLoop.updateScore(doodler);
         gameEngine.checkCollision(entities);
         gameLoop.redrawFrame(entities);
 
