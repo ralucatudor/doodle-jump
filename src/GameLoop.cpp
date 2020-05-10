@@ -1,5 +1,7 @@
 #include "GameLoop.hpp"
 
+#include <iostream>
+
 void GameLoop::createWindow()
 {   
     window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
@@ -21,7 +23,7 @@ void GameLoop::init()
     backgroundSprite.setTexture(backgroundTexture);
 }
 
-void GameLoop::pollEvents(const std::shared_ptr<Doodler>& entity)
+void GameLoop::pollEvents(const std::shared_ptr<Doodler>& doodler)
 {
     deltaTime = clock.restart().asSeconds();
     sf::Event event;
@@ -30,7 +32,7 @@ void GameLoop::pollEvents(const std::shared_ptr<Doodler>& entity)
             window.close();
         }
         else {
-            entity->keyboardInput.eventHandler(event);
+            doodler->keyboardInput.inputHandler(event);
         }
     }
 }

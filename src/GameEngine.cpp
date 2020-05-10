@@ -1,7 +1,6 @@
 #include "GameEngine.hpp"
 
 #include <random>
-//#include <iostream>
 
 void GameEngine::checkCollision(std::vector<std::shared_ptr<BaseEntity>>& entities)
 {
@@ -18,7 +17,7 @@ void GameEngine::checkCollision(std::vector<std::shared_ptr<BaseEntity>>& entiti
 
     if (doodler->getPosition().y < DOODLER_HEIGHT) {    // I maintain my doodler at DOODLER_HEIGHT
         doodler->setPosition({doodler->getPosition().x, DOODLER_HEIGHT});
-        
+
 		for (auto& entity : entities) { 
             if (std::dynamic_pointer_cast<Platform>(entity))    //(dynamic_cast<Platform*>(entity.get()))
             { 

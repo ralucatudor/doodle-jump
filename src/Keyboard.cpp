@@ -11,23 +11,23 @@ keysMapType& Keyboard::getKeysMap()
     return keysMap;
 }
 
-void Keyboard::eventHandler(const sf::Event& event)
+void Keyboard::inputHandler(const sf::Event& event)
 {
     switch (event.type) {
         case sf::Event::KeyPressed:
-            onLeftKeyPressed(event.key.code);
-            onRightKeyPressed(event.key.code);
+            leftKeyPressed(event.key.code);
+            rightKeyPressed(event.key.code);
             break;
         case sf::Event::KeyReleased:
-            onLeftKeyReleased(event.key.code);
-            onRightKeyReleased(event.key.code);
+            leftKeyReleased(event.key.code);
+            rightKeyReleased(event.key.code);
             break;
         default:
             break;
     }
 }
 
-void Keyboard::onLeftKeyPressed(const sf::Keyboard::Key &key)
+void Keyboard::leftKeyPressed(const sf::Keyboard::Key &key)
 {
     if (key != sf::Keyboard::Left) {
         return;
@@ -35,7 +35,7 @@ void Keyboard::onLeftKeyPressed(const sf::Keyboard::Key &key)
     keysMap[sf::Keyboard::Left] = true;
 }
 
-void Keyboard::onRightKeyPressed(const sf::Keyboard::Key &key)
+void Keyboard::rightKeyPressed(const sf::Keyboard::Key &key)
 {
     if (key != sf::Keyboard::Right) {
         return;
@@ -43,7 +43,7 @@ void Keyboard::onRightKeyPressed(const sf::Keyboard::Key &key)
     keysMap[sf::Keyboard::Right] = true;
 }
 
-void Keyboard::onLeftKeyReleased(const sf::Keyboard::Key &key)
+void Keyboard::leftKeyReleased(const sf::Keyboard::Key &key)
 {
     if (key != sf::Keyboard::Left) {
         return;
@@ -51,7 +51,7 @@ void Keyboard::onLeftKeyReleased(const sf::Keyboard::Key &key)
     keysMap[sf::Keyboard::Left] = false;
 }
 
-void Keyboard::onRightKeyReleased(const sf::Keyboard::Key &key)
+void Keyboard::rightKeyReleased(const sf::Keyboard::Key &key)
 {
     if (key != sf::Keyboard::Right) {
         return;

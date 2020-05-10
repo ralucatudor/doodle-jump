@@ -9,18 +9,18 @@ class Keyboard
 public:
     Keyboard();
 
-    void eventHandler(const sf::Event &event);
+    void inputHandler(const sf::Event &event);
 
     keysMapType& getKeysMap();
 
 private:
     keysMapType keysMap;
 
-    void onLeftKeyPressed(const sf::Keyboard::Key& key);
+    void leftKeyPressed(const sf::Keyboard::Key& key);
     
-    void onRightKeyPressed(const sf::Keyboard::Key& key);
+    void rightKeyPressed(const sf::Keyboard::Key& key);
 
-    void onLeftKeyReleased(const sf::Keyboard::Key& key);
+    void leftKeyReleased(const sf::Keyboard::Key& key);
 
-    void onRightKeyReleased(const sf::Keyboard::Key& key);
+    void rightKeyReleased(const sf::Keyboard::Key& key);
 };

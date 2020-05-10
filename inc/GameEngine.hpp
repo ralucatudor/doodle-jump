@@ -1,7 +1,7 @@
 #pragma once
 
 #include <memory>
-#include <functional>
+
 #include "Doodler.hpp"
 #include "Platform.hpp"
 #include "BaseEntity.hpp"
@@ -9,6 +9,7 @@
 template<typename T, typename R>
 using Lambda = std::function<T(const std::shared_ptr<R> &)>;
 
+// Game engine responsible for collision detection
 class GameEngine
 {
 public:

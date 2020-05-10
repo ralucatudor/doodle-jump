@@ -7,7 +7,7 @@ Singleton::Singleton() {}
 Singleton& Singleton::getInstance()
 {
     if (instance_ == nullptr)
-        instance_ = new Singleton();
+        instance_ = new Singleton();        // heap memory allocation
 
     return *instance_;
 }
