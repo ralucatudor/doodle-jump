@@ -2,7 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "constants.hpp"
+#include "DEFINITIONS.hpp"
 #include "BaseEntity.hpp"
 #include "Keyboard.hpp"
 

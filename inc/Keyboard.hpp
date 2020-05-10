@@ -2,8 +2,6 @@
 
 #include <SFML/Graphics.hpp>
 
-using keysMapType = std::map<sf::Keyboard::Key, bool>;
-
 class Keyboard
 {
 public:
@@ -11,19 +9,11 @@ public:
 
     void inputHandler(const sf::Event &event);
 
-    keysMapType& getKeysMap();
+    std::map<sf::Keyboard::Key, bool>& getKeysMap();
 
 private:
-    keysMapType keysMap;
+    std::map<sf::Keyboard::Key, bool> keysMap;
     
-    Keyboard& operator+=(const sf::Keyboard::Key &key);  // KeyPressed
+    Keyboard& operator+=(const sf::Keyboard::Key& key);  // KeyPressed
     Keyboard& operator-=(const sf::Keyboard::Key& key);  // KeyReleased
-
-    // void leftKeyPressed(const sf::Keyboard::Key& key);
-    
-    // void rightKeyPressed(const sf::Keyboard::Key& key);
-
-    // void leftKeyReleased(const sf::Keyboard::Key& key);
-
-    // void rightKeyReleased(const sf::Keyboard::Key& key);
 };

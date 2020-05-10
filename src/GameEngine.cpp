@@ -2,6 +2,8 @@
 
 #include <random>
 
+#include <iostream>
+
 void GameEngine::checkCollision(std::vector<std::shared_ptr<BaseEntity>>& entities)
 {
     std::shared_ptr<BaseEntity> doodlerEntity = *std::find_if(entities.begin(), entities.end(), isDoodler);
@@ -9,10 +11,17 @@ void GameEngine::checkCollision(std::vector<std::shared_ptr<BaseEntity>>& entiti
     //std::shared_ptr<Doodler> doodler (std::dynamic_pointer_cast<Doodler>(doodlerEntity)); 
     doodler =std::dynamic_pointer_cast<Doodler>(doodlerEntity);  
 
+    if (doodler->getPosition().y == DOODLER_HEIGHT && doodler->dy < (-1.62)) {
+        Score addScore(1);
+		totalScore = totalScore + addScore;
+		//scoreText.setString("Score: " + std::to_string(score));
+	}
+    std::cout << totalScore.getScore() << '\n';
+
     std::random_device rand_dev;
     std::mt19937 generator(rand_dev());
 
-    doodler->dy += 0.2;
+    doodler->dy += 0.2;             // mai bine pui dy privat si faci getter si setter
     doodler->setUpDownPosition();
 
     if (doodler->getPosition().y < DOODLER_HEIGHT) {    // I maintain my doodler at DOODLER_HEIGHT
@@ -47,7 +56,7 @@ bool GameEngine::doesIntersect(const std::shared_ptr<BaseEntity>& platform) cons
         && (doodler->getPosition().x + DOODLER_LEFT_BOUNDING_BOX < platform->getPosition().x + platform->getTextureSize().x) 
         && (doodler->getPosition().y + DOODLER_BOTTOM_BOUNDING_BOX > platform->getPosition().y)
         && (doodler->getPosition().y + DOODLER_BOTTOM_BOUNDING_BOX < platform->getPosition().y + platform->getTextureSize().y)
-        && (doodler->dy > 0)) //dy > 0
+        && (doodler->dy > 0))
         return 1;
     return 0;
 }

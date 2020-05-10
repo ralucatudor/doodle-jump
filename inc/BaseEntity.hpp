@@ -1,7 +1,7 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
-#include "constants.hpp"
+#include "DEFINITIONS.hpp"
 
 class BaseEntity : public sf::Drawable, public sf::Transformable
 // inherit Transformable for getposition() and Drawable for draw()

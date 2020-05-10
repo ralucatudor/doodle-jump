@@ -1,7 +1,7 @@
 #pragma once
 
 #include "BaseEntity.hpp"
-#include "constants.hpp"
+#include "DEFINITIONS.hpp"
 
 class Platform : public BaseEntity
 {

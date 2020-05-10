@@ -3,7 +3,7 @@
 #include <SFML/Graphics.hpp>
 #include <memory>
 
-#include "constants.hpp"
+#include "DEFINITIONS.hpp"
 #include "BaseEntity.hpp"
 #include "Doodler.hpp"
 #include "Platform.hpp"
