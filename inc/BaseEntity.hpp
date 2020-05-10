@@ -7,11 +7,8 @@ class BaseEntity : public sf::Drawable, public sf::Transformable
 // inherit Transformable for getposition() and Drawable for draw()
 {
 // maybe declare texture and sprite protected?
-private:
-    //virtual void checkCollision() = 0;
 public:
     float dy;
-    virtual void updateCollision() {};
 
     std::map<sf::Keyboard::Key, bool> keysMap;
 
@@ -24,6 +21,6 @@ public:
 
     virtual sf::Vector2u getTextureSize() = 0;
 
-    virtual void testupdate() {};
+    virtual void setUpDownPosition() {};
 };
 

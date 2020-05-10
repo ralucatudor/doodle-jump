@@ -16,14 +16,13 @@ Doodler::Doodler()
     keysMap[sf::Keyboard::Right] = false;
 }
 
-Doodler::Doodler(const Doodler& ob) 
+Doodler::Doodler(const Doodler& ob)         // copy constructor
 {
     doodlerTexture = ob.doodlerTexture;
     doodlerSprite = ob.doodlerSprite;
     doodlerSprite.setTexture(doodlerTexture);
     position = ob.position;
     deltaY = ob.deltaY;
-    timeAccumulator = ob.timeAccumulator;
 }
 
 void Doodler::updatePosition(const float deltaTime)
@@ -31,13 +30,6 @@ void Doodler::updatePosition(const float deltaTime)
     setLeftRightPosition(MOVE_SPEED, deltaTime);    // set position.x
 
     doodlerSprite.setPosition(position);
-    setPosition(position);
-}
-
-void Doodler::updateCollision()
-{
-    timeAccumulator = 0;
-    position.y = doodlerSprite.getPosition().y;
 }
 
 void Doodler::setLeftRightPosition(const float move_speed, const float deltaTime)
@@ -75,6 +67,6 @@ sf::Vector2u Doodler::getTextureSize() {
     return doodlerTexture.getSize();
 }
 
-void Doodler::testupdate() {
+void Doodler::setUpDownPosition() {
     position.y += dy;
 }

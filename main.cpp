@@ -21,7 +21,7 @@ int main(int argc, char* argv[])
         }
     }
 
-    Singleton::getInstance() << "Starting Doodle Jump..." << '\n';
+    Logger::getInstance() << "Starting Doodle Jump..." << '\n';
 
     std::vector<std::shared_ptr<BaseEntity>> entities;
 

@@ -17,7 +17,7 @@ void GameEngine::checkCollision(std::vector<std::shared_ptr<BaseEntity>>& entiti
 
     doodler->dy += 0.2;
 	// playerY += dy;
-    doodler->testupdate();
+    doodler->setUpDownPosition();
 
     if (doodler->getPosition().y < DOODLER_HEIGHT) {
         doodler->getPosition().y = DOODLER_HEIGHT;

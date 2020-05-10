@@ -10,13 +10,9 @@
 class Doodler : public BaseEntity
 {
 private:
-    const float jumping_speed = 65;
-    float timeAccumulator = 0;
-
     float deltaY;
 
     sf::Vector2f position = sf::Vector2f(WINDOW_WIDTH / 2, 150);
-    sf::Vector2f actualPosition;
 
     sf::Texture doodlerTexture;
     sf::Sprite doodlerSprite;
@@ -28,8 +24,6 @@ private:
 
     void setDeltaY(const float);
 public:
-    void updateCollision() override;
-
     Doodler();
 
     ~Doodler() override = default;
@@ -45,7 +39,7 @@ public:
     sf::Vector2u getTextureSize() override;
 
 
-    void testupdate();
+    void setUpDownPosition();
 
     void sayHello() {
         std::cout << "oh yes\n";
