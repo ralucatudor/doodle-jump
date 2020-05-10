@@ -29,8 +29,10 @@ int main(int argc, char* argv[])
     gameLoop.init();
 
     for (size_t i = 0; i < PLATFORM_COUNT; ++i) {
-        std::shared_ptr<Platform> platform = std::make_shared<Platform>(Platform());
-        entities.emplace_back(platform);
+        /* std::shared_ptr<Platform> platform = std::make_shared<Platform>(Platform());
+           entities.emplace_back(platform); */
+           
+        entities.emplace_back(std::shared_ptr<Platform>(new Platform()));   // heap memory allocation
     }
 
     std::shared_ptr<Doodler> doodler = std::make_shared<Doodler>(Doodler());

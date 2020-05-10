@@ -20,7 +20,9 @@ public:
 
     void updatePosition() override;
 
-    sf::Vector2f& getPosition() override; 
+    sf::Vector2f getPosition() const override; 
+
+    void setPosition(sf::Vector2f ) override;
 
     sf::Vector2u getTextureSize() override;
 };

@@ -35,7 +35,9 @@ public:
 
     void updatePosition(const float) override;
 
-    sf::Vector2f& getPosition() override; 
+    sf::Vector2f getPosition() const override; 
+
+    void setPosition(sf::Vector2f ) override;
 
     float getDeltaY();
 

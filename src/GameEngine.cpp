@@ -16,16 +16,17 @@ void GameEngine::checkCollision(std::vector<std::shared_ptr<BaseEntity>>& entiti
     doodler->dy += 0.2;
     doodler->setUpDownPosition();
 
-    if (doodler->getPosition().y < DOODLER_HEIGHT) {
-        doodler->getPosition().y = DOODLER_HEIGHT;
+    if (doodler->getPosition().y < DOODLER_HEIGHT) {    // I maintain my doodler at DOODLER_HEIGHT
+        doodler->setPosition({doodler->getPosition().x, DOODLER_HEIGHT});
+        
 		for (auto& entity : entities) { 
-            //if (dynamic_cast<Platform*>(entity.get())) {
-            if (std::dynamic_pointer_cast<Platform>(entity)) {
-                entity->getPosition().y -= doodler->dy;     // vertical translation
-                if (entity->getPosition().y > WINDOW_HEIGHT) {// set new platform on the top
-                    entity->getPosition().y = 0;        // !!!!!!!!!!!!! AICI SCHIMBA IN SETTER, NU LASA GETTER CU REFERINTA
-                    std::uniform_int_distribution<unsigned> x(0, WINDOW_WIDTH - entity->getTextureSize().x);
-                    entity->getPosition().x = x(generator);		// !!!!!!!!!!!!! ANALOG		
+            if (std::dynamic_pointer_cast<Platform>(entity))    //(dynamic_cast<Platform*>(entity.get()))
+            { 
+                entity->setPosition({entity->getPosition().x, entity->getPosition().y - doodler->dy}); // vertical translation
+                if (entity->getPosition().y > WINDOW_HEIGHT) {
+                    // set new platform on the top    
+                    std::uniform_int_distribution<unsigned> x(0, WINDOW_WIDTH - entity->getTextureSize().x);	
+                    entity->setPosition({static_cast<float>(x(generator)), 0});
                 }
             }
         }

@@ -56,7 +56,7 @@ float Doodler::getDeltaY()
     return deltaY;
 }
 
-sf::Vector2f& Doodler::getPosition()
+sf::Vector2f Doodler::getPosition() const
 {
     return position;
 }
@@ -69,4 +69,9 @@ sf::Vector2u Doodler::getTextureSize()
 void Doodler::setUpDownPosition() 
 {
     position.y += dy;
+}
+
+void Doodler::setPosition(sf::Vector2f newPosition) 
+{
+    position = newPosition;
 }
