@@ -8,10 +8,7 @@ static const unsigned int WINDOW_HEIGHT = 600;
 static const std::string WINDOW_TITLE = "Doodle Jump";
 static const unsigned int MAX_FPS = 60; // frame limit
 
-
 /// Game
-static const float STANDARD_GRAVITY = 9.8; //g0 = 9.8 m/s^2
-static const float TIME_ACCELERATOR = 12;
 static const float MOVE_SPEED = 300;    // for left-right movement
 static const size_t PLATFORM_COUNT = 15;
 

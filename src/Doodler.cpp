@@ -8,7 +8,7 @@ void Doodler::draw(sf::RenderTarget& target, sf::RenderStates states) const
 
 Doodler::Doodler()
 {
-    doodlerTexture.loadFromFile("img/doodle.png");
+    doodlerTexture.loadFromFile("res/img/doodle.png");
     doodlerSprite.setTexture(doodlerTexture);
     doodlerSprite.setPosition(position);
 

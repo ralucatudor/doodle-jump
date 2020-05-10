@@ -9,7 +9,7 @@ void Platform::draw(sf::RenderTarget &target, sf::RenderStates states) const
 
 Platform::Platform() 
 {
-    platformTexture.loadFromFile("img/platform.png");
+    platformTexture.loadFromFile("res/img/platform.png");
     platformSprite.setTexture(platformTexture);
     platformSprite.setPosition(position);
 

@@ -17,7 +17,7 @@ void GameLoop::init()
         createWindow();
     }        
                             
-    backgroundTexture.loadFromFile("img/background.png");
+    backgroundTexture.loadFromFile("res/img/background.png");
     backgroundSprite.setTexture(backgroundTexture);
 }
 
@@ -63,11 +63,10 @@ void GameLoop::pollEvents(const std::shared_ptr<BaseEntity>& entity)
 void GameLoop::update(const std::vector<std::shared_ptr<BaseEntity>>& entities)
 {
     std::for_each(entities.begin(), entities.end(), [&](const std::shared_ptr<BaseEntity>& item) -> void {
-        if (dynamic_cast<Doodler*>(item.get()))
-        {
+        if (dynamic_cast<Doodler*>(item.get())) {
             item->updatePosition(deltaTime);
-        } else if (dynamic_cast<Platform*>(item.get()))
-        {
+        } 
+        else if (dynamic_cast<Platform*>(item.get())) {
             item->updatePosition();
         }
     });
