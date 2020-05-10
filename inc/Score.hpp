@@ -9,7 +9,6 @@ class Score     // Score Counter class
 {
 private:
     T score;
-    sf::Text scoreText;
 public:
     Score(T score = 0);
     Score(const Score<T>& ob);
@@ -22,8 +21,4 @@ public:
     Score<T>& operator=(const Score<T>& );
     // template<typename U>
     Score<T> operator + (Score<T> const&);
-
-    void updateScoreText();
-
-    sf::Text& getScoreText(); //const;
 };

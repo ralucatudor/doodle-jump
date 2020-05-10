@@ -10,14 +10,14 @@ The project must include:
 - [x] Graphical Interface (SDL, SFML, Qt, etc.) - C++ API 
 - [x] RTTI (Run-time type information)
 - [x] Abstract Classes
-- [ ] Overloading Operators - << Logger,
+- [x] Overloading Operators - << Logger class; += and -= Keyboard class; = and + Score class
 - [x] Heap Memory Allocation
 - [ ] Exceptions
-- [x] STL (_map for Keyboard_)
+- [x] STL _(std::vector - for entities (doodler and platforms); std::map for keyboard input)_
 - [ ] Lambda expressions
-- [ ] Templates
+- [x] Templates
 - [x] Smart pointers
-- [ ] Design patterns (minimum 2) - Singleton & 
+- [ ] Design patterns (minimum 2) - Singleton (Logger) & Factory (TO DO) 
 - [ ] Features of C++17/20 (constexpr, consteval, constinit, fold expressions, init statement for if/switch, etc.)
 
 The project might include:

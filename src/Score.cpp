@@ -1,20 +1,12 @@
 #include "Score.hpp"
 
 template<typename T>
-Score<T>::Score(T score): score(score) 
-{
-    sf::Font font;
-	font.loadFromFile(FONT_FILEPATH);
-	scoreText.setFont(font);
-	scoreText.setCharacterSize(50);
-	scoreText.setFillColor(sf::Color::Red);
-}
+Score<T>::Score(T score): score(score) {}
 
 template<typename T>
-Score<T>::Score(const Score<T>& ob)  
+Score<T>::Score(const Score<T>& ob)     // copy constructor
 {
     score = ob.score;
-    scoreText = ob.scoreText;
 }
 
 template<typename T>
@@ -27,27 +19,16 @@ template<typename T>
 Score<T>& Score<T>::operator=(const Score<T>& other) 
 {
     score = other.score;
-    updateScoreText();
     return (*this);
 }
 
 template<typename T>
-Score<T> Score<T>::operator+ (Score<T> const& rhs) 
+Score<T> Score<T>::operator+ (Score<T> const& ob) 
 { 
-    return score + rhs.score;
+    Score newScore;
+    newScore.score = this->score + ob.score;
+    return newScore;
 } 
-
-template<typename T>
-void Score<T>::updateScoreText() 
-{
-    scoreText.setString("Score: " + std::to_string(score));
-}
-
-template<typename T>
-sf::Text& Score<T>::getScoreText()
-{
-    return scoreText;
-}
 
 template class Score<int>;  
 // This will ensure that, when the compiler is compiling Score.cpp 

@@ -1,4 +1,4 @@
-flags_all = -c -std=c++17
+flags_all = -c -std=c++2a
 
 SCR_PARAMS = main.cpp src/*.cpp
 INC_PARAMS = inc/
