@@ -2,6 +2,7 @@
 
 #include <SFML/Graphics.hpp>
 #include <cmath>
+#include <iostream>
 
 #include "constants.hpp"
 #include "BaseEntity.hpp"
@@ -45,4 +46,8 @@ public:
 
 
     void testupdate();
+
+    void sayHello() {
+        std::cout << "oh yes\n";
+    }
 };

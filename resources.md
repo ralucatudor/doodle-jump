@@ -10,6 +10,9 @@ What I’ve stumbled through during the process of implementing this game:
 - What is the point of a private pure virtual function? [see here - stackoverflow](https://stackoverflow.com/questions/3970279/what-is-the-point-of-a-private-pure-virtual-function)
 - Why is this random number generator generating same numbers? [see here](https://stackoverflow.com/questions/53185702/why-is-this-random-number-generator-generating-same-numbers)
 - Core Dump (Segmentation fault) in C/C++ [see here](https://www.geeksforgeeks.org/core-dump-segmentation-fault-c-cpp/) -> _Core Dump/Segmentation fault is a specific kind of error caused by accessing memory that “does not belong to you.”_
+- munmap_chunk(): invalid pointer error in C++
+- std::dynamic_pointer_cast [see here](http://www.cplusplus.com/reference/memory/dynamic_pointer_cast/)
+- *.h or *.hpp for your class definitions [see here](https://stackoverflow.com/questions/152555/h-or-hpp-for-your-class-definitions)
 
 SFML things I’ve stumbled through:
 ---

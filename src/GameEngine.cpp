@@ -5,6 +5,11 @@
 
 void GameEngine::checkCollision(std::vector<std::shared_ptr<BaseEntity>>& entities)
 {
+    // std::shared_ptr<BaseEntity> doodler2 = *std::find_if(entities.begin(), entities.end(), isDoodler);
+
+    // std::shared_ptr<Doodler> actualDoodler (std::dynamic_pointer_cast<Doodler>(doodler2));
+    // actualDoodler->sayHello();
+
     doodler = *std::find_if(entities.begin(), entities.end(), isDoodler);
 
     std::random_device rand_dev;
@@ -17,7 +22,8 @@ void GameEngine::checkCollision(std::vector<std::shared_ptr<BaseEntity>>& entiti
     if (doodler->getPosition().y < DOODLER_HEIGHT) {
         doodler->getPosition().y = DOODLER_HEIGHT;
 		for (auto& entity : entities) { 
-            if (dynamic_cast<Platform*>(entity.get())) {
+            //if (dynamic_cast<Platform*>(entity.get())) {
+            if (std::dynamic_pointer_cast<Platform>(entity)) {
 			    //entity->getPosition().y += (doodler->getDeltaY()) / 20;//dy;  // vertical translation
                 entity->getPosition().y -= doodler->dy;
                 if (entity->getPosition().y > WINDOW_HEIGHT) // set new platform on the top

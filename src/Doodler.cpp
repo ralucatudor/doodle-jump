@@ -28,18 +28,7 @@ Doodler::Doodler(const Doodler& ob)
 
 void Doodler::updatePosition(const float deltaTime)
 {
-    //checkCollision(); //I no longer need bottom collision 
     setLeftRightPosition(MOVE_SPEED, deltaTime);    // set position.x
-    // timeAccumulator += deltaTime * TIME_ACCELERATOR;
-    // double nextY = position.y - jumping_speed * timeAccumulator + 0.6 * STANDARD_GRAVITY * std::pow(timeAccumulator, 2);
-    
-    // setDeltaY(nextY);
-
-    // const sf::Vector2f nextPosition = {position.x, static_cast<float>(nextY)};
-    // actualPosition = nextPosition;
-
-    // doodlerSprite.setPosition(nextPosition);
-    // setPosition(nextPosition);
 
     doodlerSprite.setPosition(position);
     setPosition(position);
@@ -57,14 +46,12 @@ void Doodler::setLeftRightPosition(const float move_speed, const float deltaTime
         // check right collision before updating
         if (position.x + doodlerTexture.getSize().x > WINDOW_WIDTH)
             position.x = 0;
-        //position.x += move_speed * deltaTime;
         position.x += 4;
     } else {
         // check left collision before updating
         if (keysMap[sf::Keyboard::Left]) {
             if (position.x < 0)
                 position.x = WINDOW_WIDTH - doodlerTexture.getSize().x;
-            //position.x -= move_speed * deltaTime;
             position.x -= 4;
         }
     }

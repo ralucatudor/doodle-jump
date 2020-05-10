@@ -1,6 +1,8 @@
 // #include <SFML/Graphics.hpp> already included in the hpp
 // same for #include <memory>
 #include <iostream>
+#include "Logger.hpp"
+
 #include "GameLoop.hpp"
 #include "Doodler.hpp"
 #include "Platform.hpp"
@@ -18,6 +20,8 @@ int main(int argc, char* argv[])
             return 0;
         }
     }
+
+    Singleton::getInstance() << "Starting Doodle Jump..." << '\n';
 
     std::vector<std::shared_ptr<BaseEntity>> entities;
 
