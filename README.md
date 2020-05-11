@@ -22,4 +22,4 @@ The project must include:
 
 The project might include:
 - [ ] Move semantics
-- [ ] DataBases
+- [ ] Databases

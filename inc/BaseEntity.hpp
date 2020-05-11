@@ -6,7 +6,11 @@
 class BaseEntity : public sf::Drawable, public sf::Transformable
 // inherit Transformable for getposition() and Drawable for draw()
 {
-// maybe declare texture and sprite protected?
+protected: 
+    sf::Vector2f position;
+    
+    sf::Texture texture;
+    sf::Sprite sprite;
 public:
     virtual void updatePosition(const float) {}
     virtual void updatePosition() {}

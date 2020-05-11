@@ -17,8 +17,6 @@ public:
 
     // Overload + operator. When incrementing the score - increment the total score with 
     // another ScoreCounter instance having the current obtained score as value.
-    // template<typename U>
     Score<T>& operator=(const Score<T>& );
-    // template<typename U>
     Score<T> operator + (Score<T> const&);
 };

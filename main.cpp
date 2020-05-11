@@ -62,7 +62,7 @@ int main(int argc, char* argv[])
 }
 
 void displayGameOverWindow(GameLoop& gameLoop) {
-    std::cout << "GameOver";
+    Logger::getInstance() << "Doodle Jump Over!" << '\n';
 
     gameLoop.getWindow().clear(sf::Color::Black);
 

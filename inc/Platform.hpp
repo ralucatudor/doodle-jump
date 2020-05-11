@@ -5,11 +5,6 @@
 
 class Platform : public BaseEntity
 {
-    sf::Texture platformTexture;
-    sf::Sprite platformSprite;
-    
-    sf::Vector2f position;
-
     void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
 public:
     Platform();

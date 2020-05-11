@@ -4,18 +4,18 @@
 
 void Platform::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
-    target.draw(platformSprite, states);
+    target.draw(sprite, states);
 }
 
 Platform::Platform() 
 {
-    platformTexture.loadFromFile("res/img/platform.png");
-    platformSprite.setTexture(platformTexture);
-    platformSprite.setPosition(position);
+    texture.loadFromFile("res/img/platform.png");
+    sprite.setTexture(texture);
+    sprite.setPosition(position);
 
     std::random_device rand_dev;
     std::mt19937 generator(rand_dev());
-    std::uniform_int_distribution<unsigned> x(0, WINDOW_WIDTH - platformTexture.getSize().x);
+    std::uniform_int_distribution<unsigned> x(0, WINDOW_WIDTH - texture.getSize().x);
     std::uniform_int_distribution<unsigned> y(0, WINDOW_HEIGHT - 30);
 
     position.x = x(generator);
@@ -24,15 +24,15 @@ Platform::Platform()
 
 Platform::Platform(const Platform& ob) 
 {
-    platformTexture = ob.platformTexture;
-    platformSprite = ob.platformSprite;
+    texture = ob.texture;
+    sprite = ob.sprite;
     position = ob.position;
-    platformSprite.setTexture(platformTexture);
+    sprite.setTexture(texture);
 }
 
 void Platform::updatePosition()
 {
-    platformSprite.setPosition(position);
+    sprite.setPosition(position);
 }
 
 sf::Vector2f Platform::getPosition() const
@@ -42,7 +42,7 @@ sf::Vector2f Platform::getPosition() const
 
 sf::Vector2u Platform::getTextureSize() 
 {
-    return platformTexture.getSize();
+    return texture.getSize();
 }
 
 void Platform::setPosition(sf::Vector2f newPosition) 
