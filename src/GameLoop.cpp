@@ -64,11 +64,12 @@ void GameLoop::redrawFrame(const std::vector<std::shared_ptr<BaseEntity>>& entit
     sf::Font font;
 	font.loadFromFile(FONT_FILEPATH);
     sf::Text scoreText;
-	scoreText.setFont(font);
-    //scoreText.setString("Score: " + std::to_string(totalScore.getScore()));
-	scoreText.setString("Score: " + std::to_string(((int)(totalScore.getScore() * 10)) / 10));
+	scoreText.setFont(font);   
     scoreText.setCharacterSize(40);
-	scoreText.setFillColor(sf::Color::Red);
+	scoreText.setFillColor(sf::Color::Black);
+    
+    //scoreText.setString("Score: " + std::to_string(totalScore.getScore()));
+	scoreText.setString( "Score: " + std::to_string( static_cast<int>( totalScore.getScore() ) ) );
     
     window.draw(scoreText);
 

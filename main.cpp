@@ -63,7 +63,9 @@ int main(int argc, char* argv[])
 
 void displayGameOverWindow(GameLoop& gameLoop) {
     std::cout << "GameOver";
-            
+
+    gameLoop.getWindow().clear(sf::Color::Black);
+
     sf::Font font;
 	font.loadFromFile("res/font/arial.ttf");
     sf::Text gameoverText;
@@ -71,10 +73,23 @@ void displayGameOverWindow(GameLoop& gameLoop) {
     gameoverText.setString("Game Over!");
     gameoverText.setCharacterSize(60);
     gameoverText.setFillColor(sf::Color::White);
-    gameoverText.setPosition(40, 250);
+    gameoverText.setPosition(40, 200);
 
-    gameLoop.getWindow().clear(sf::Color::Black);
     gameLoop.getWindow().draw(gameoverText);
+
+    // Display final score
+
+    sf::Text finalScoreText;
+	finalScoreText.setFont(font);   
+    finalScoreText.setCharacterSize(40);
+	finalScoreText.setFillColor(sf::Color::White);
+	finalScoreText.setString( "Score: " + std::to_string( static_cast<int>( gameLoop.totalScore.getScore() ) ) );
+    // center the final score text
+    finalScoreText.setPosition(WINDOW_WIDTH/2.0f, WINDOW_HEIGHT/2.0f); //Window width divided by 2, same with height.
+    finalScoreText.setOrigin(finalScoreText.getLocalBounds().width/2.0f, finalScoreText.getLocalBounds().height/2.0f);
+
+    gameLoop.getWindow().draw(finalScoreText);
+    
     gameLoop.getWindow().display();
 
     sf::Event event;

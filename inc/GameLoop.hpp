@@ -23,8 +23,10 @@ private:
 
     void createWindow();
 
-    Score<float> totalScore;
+    
 public:
+    Score<float> totalScore;        // public because I display the final score at the end, in main
+    
     void pollEvents(const std::shared_ptr<Doodler>&);
 
     void update(const std::vector<std::shared_ptr<BaseEntity>>&);
