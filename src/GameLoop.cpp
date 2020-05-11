@@ -19,7 +19,7 @@ void GameLoop::init()
         createWindow();
     }        
                             
-    backgroundTexture.loadFromFile("res/img/background.png");
+    backgroundTexture.loadFromFile(BACKGROUND_FILEPATH);
     backgroundSprite.setTexture(backgroundTexture);
 }
 

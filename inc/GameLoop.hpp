@@ -22,8 +22,6 @@ private:
     float deltaTime = 0;
 
     void createWindow();
-
-    
 public:
     Score<float> totalScore;        // public because I display the final score at the end, in main
     

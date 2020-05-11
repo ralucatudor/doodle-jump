@@ -1,10 +1,13 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+
 #include "DEFINITIONS.hpp"
 
-class BaseEntity : public sf::Drawable, public sf::Transformable
-// inherit Transformable for getposition() and Drawable for draw()
+class BaseEntity : public sf::Drawable
+// inherit Drawable for draw()
+// I could've also inherited sf::Transformable for getposition(), 
+// but I eventually wrote my own method.
 {
 protected: 
     sf::Vector2f position;
