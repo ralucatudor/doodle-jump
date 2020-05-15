@@ -17,7 +17,7 @@ The project must include:
 - [ ] Lambda expressions
 - [x] Templates
 - [x] Smart pointers
-- [ ] Design patterns (minimum 2) - Singleton (Logger) & Factory (TO DO) 
+- [x] Design patterns (minimum 2) - Singleton (Logger) & Factory
 - [ ] Features of C++17/20 (constexpr, consteval, constinit, fold expressions, init statement for if/switch, etc.)
 
 The project might include:

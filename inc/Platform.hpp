@@ -15,11 +15,11 @@ public:
 
     void updatePosition() override;
 
-    sf::Vector2f getPosition() const override; 
+    sf::Vector2f getPosition() const override final; 
 
-    void setPosition(sf::Vector2f ) override;
+    void setPosition(sf::Vector2f ) override final;
 
-    sf::Vector2u getTextureSize() override;
+    sf::Vector2u getTextureSize() override final;
 
     virtual unsigned getSpeed() = 0;
 };

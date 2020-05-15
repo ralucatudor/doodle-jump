@@ -29,42 +29,47 @@ int main(int argc, char* argv[])
     std::vector<std::shared_ptr<BaseEntity>> entities;
 
     GameLoop gameLoop;
-    gameLoop.init();
+    // gameLoop.init();
 
     // PlatformCreator creatorInstance;
-    for (size_t i = 0; i < PLATFORM_COUNT; ++i) {
-        /* 
-        std::shared_ptr<Platform> platform = std::make_shared<Platform>(Platform());
-        entities.emplace_back(platform); 
-        entities.emplace_back(std::shared_ptr<Platform>(new Platform()));   // heap memory allocation
-        */
+    // for (size_t i = 0; i < PLATFORM_COUNT; ++i) {
+    //     /* 
+    //     std::shared_ptr<Platform> platform = std::make_shared<Platform>(Platform());
+    //     entities.emplace_back(platform); 
+    //     entities.emplace_back(std::shared_ptr<Platform>(new Platform()));   // heap memory allocation
+    //     */
         
-        // x MOD 4 => 0 1 2 3 | MOD 3 => 0 1 2 0 | + 1 => 1 2 3 1 
-        // maybe use enum ?
+    //     // x MOD 4 => 0 1 2 3 | MOD 3 => 0 1 2 0 | + 1 => 1 2 3 1 
+    //     // maybe use enum ?
 
-        int type = (i % 4) % 3 + 1;
-        entities.emplace_back(std::shared_ptr<Platform>(PlatformCreator::getPlatform(type)));
-    }
+    //     int type = (i % 4) % 3 + 1;
+    //     entities.emplace_back(std::shared_ptr<Platform>(PlatformCreator::getPlatform(type)));
+    // }
 
-    std::shared_ptr<Doodler> doodler = std::make_shared<Doodler>(Doodler());
+    // std::shared_ptr<Doodler> doodler = std::make_shared<Doodler>(Doodler());
 
-    entities.emplace_back(doodler);
+    // entities.emplace_back(doodler);
     
     GameEngine gameEngine;
 
-
     while (gameLoop.getWindow().isOpen()) {
-        gameLoop.pollEvents(doodler);
-        gameLoop.update(entities);
-        gameLoop.updateScore(doodler);
-        gameEngine.checkCollision(entities);
-        gameLoop.redrawFrame(entities);
+        // gameLoop.pollEvents(doodler);
+        // gameLoop.update(entities);
+        // gameLoop.updateScore(doodler);
+        // gameEngine.checkCollision(entities);
+        // gameLoop.redrawFrame(entities);
 
-        bool gameIsOver = (doodler != nullptr && doodler->getPosition().y > WINDOW_HEIGHT);
-        if (gameIsOver) {
-            displayGameOverWindow(gameLoop);
-            break;
-        }
+        // bool gameIsOver = (doodler != nullptr && doodler->getPosition().y > WINDOW_HEIGHT);
+        // if (gameIsOver) {
+        //     displayGameOverWindow(gameLoop);
+        //     break;
+        // }
+
+        gameLoop.pollEvents();
+        gameLoop.update();
+        gameLoop.updateScore();
+        gameEngine.checkCollision(gameLoop.entities);
+        gameLoop.redrawFrame();
     }
 
     return 0;

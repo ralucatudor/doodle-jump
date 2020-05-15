@@ -18,6 +18,9 @@ T Score<T>::getScore() const
 template<typename T>
 Score<T>& Score<T>::operator=(const Score<T>& other) 
 {
+    if (this == &other) {
+        return (*this);
+    }
     score = other.score;
     return (*this);
 }
