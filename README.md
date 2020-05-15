@@ -14,11 +14,11 @@ The project must include:
 - [x] Heap Memory Allocation
 - [ ] Exceptions
 - [x] STL _(std::vector - for entities (doodler and platforms); std::map for keyboard input)_
-- [ ] Lambda expressions
+- [x] Lambda expressions
 - [x] Templates
 - [x] Smart pointers
 - [x] Design patterns (minimum 2) - Singleton (Logger) & Factory
-- [ ] Features of C++17/20 (constexpr, consteval, constinit, fold expressions, init statement for if/switch, etc.)
+- [x] Features of C++17/20 (constexpr, consteval, constinit, fold expressions, init statement for if/switch, etc.)
 
 The project might include:
 - [ ] Move semantics

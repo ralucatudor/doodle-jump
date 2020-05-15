@@ -53,23 +53,17 @@ int main(int argc, char* argv[])
     GameEngine gameEngine;
 
     while (gameLoop.getWindow().isOpen()) {
-        // gameLoop.pollEvents(doodler);
-        // gameLoop.update(entities);
-        // gameLoop.updateScore(doodler);
-        // gameEngine.checkCollision(entities);
-        // gameLoop.redrawFrame(entities);
-
-        // bool gameIsOver = (doodler != nullptr && doodler->getPosition().y > WINDOW_HEIGHT);
-        // if (gameIsOver) {
-        //     displayGameOverWindow(gameLoop);
-        //     break;
-        // }
-
         gameLoop.pollEvents();
         gameLoop.update();
         gameLoop.updateScore();
         gameEngine.checkCollision(gameLoop.entities);
         gameLoop.redrawFrame();
+
+        if (bool gameIsOver = (gameLoop.doodler != nullptr && gameLoop.doodler->getPosition().y > WINDOW_HEIGHT); gameIsOver) {
+            displayGameOverWindow(gameLoop);
+            break;
+        }
+        // TODO: move gameover to GameLoop class and maybe try including <thread>
     }
 
     return 0;

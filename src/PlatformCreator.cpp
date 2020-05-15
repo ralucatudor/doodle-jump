@@ -1,12 +1,17 @@
 #include "PlatformCreator.hpp"
 
-Platform* PlatformCreator::getPlatform(const int& choice)
+#include <iostream>
+
+std::shared_ptr<Platform> PlatformCreator::getPlatform(const int& choice)
 {
-    if (choice == 1)
-        return new RegularPlatform();
-    if (choice == 2)
-        return new SlowPlatform();
-    if (choice == 3)
-        return new FastPlatform();
+    if (choice == 1) {
+        return std::make_shared<RegularPlatform>(RegularPlatform());
+    }
+    if (choice == 2) {
+        return std::make_shared<SlowPlatform>(SlowPlatform());
+    }
+    if (choice == 3) {
+        return std::make_shared<FastPlatform>(FastPlatform());
+    }
     return nullptr; // maybe throw exception
 }

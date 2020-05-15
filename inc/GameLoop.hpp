@@ -23,10 +23,8 @@ private:
 
     void createWindow();
 
-
-    
-    std::shared_ptr<Doodler> doodler;
 public:
+    std::shared_ptr<Doodler> doodler;
     std::vector<std::shared_ptr<BaseEntity>> entities;
     GameLoop();
 

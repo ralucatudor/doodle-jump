@@ -23,17 +23,11 @@ GameLoop::GameLoop()
     backgroundSprite.setTexture(backgroundTexture);
 
     for (size_t i = 0; i < PLATFORM_COUNT; ++i) {
-        /* 
-        std::shared_ptr<Platform> platform = std::make_shared<Platform>(Platform());
-        entities.emplace_back(platform); 
-        entities.emplace_back(std::shared_ptr<Platform>(new Platform()));   // heap memory allocation
-        */
-        
         // x MOD 4 => 0 1 2 3 | MOD 3 => 0 1 2 0 | + 1 => 1 2 3 1 
         // maybe use enum ?
 
         int type = (i % 4) % 3 + 1;
-        entities.emplace_back(std::shared_ptr<Platform>(PlatformCreator::getPlatform(type)));
+        entities.emplace_back(PlatformCreator::getPlatform(type));
     }
 
     doodler = std::make_shared<Doodler>(Doodler());
@@ -41,7 +35,6 @@ GameLoop::GameLoop()
     entities.emplace_back(doodler);
 }
 
-// void GameLoop::pollEvents(const std::shared_ptr<Doodler>& doodler)
 void GameLoop::pollEvents()
 {
     deltaTime = clock.restart().asSeconds();
@@ -56,7 +49,6 @@ void GameLoop::pollEvents()
     }    
 }
 
-// void GameLoop::update(const std::vector<std::shared_ptr<BaseEntity>>& entities)
 void GameLoop::update()
 {
     std::for_each(entities.begin(), entities.end(), [&](const std::shared_ptr<BaseEntity>& item) -> void {
@@ -69,7 +61,6 @@ void GameLoop::update()
     });
 }
 
-// void GameLoop::updateScore(const std::shared_ptr<Doodler>& doodler)
 void GameLoop::updateScore()
 {
     if (doodler->getPosition().y == DOODLER_HEIGHT && doodler->dy < (-1.62)) {
@@ -78,7 +69,6 @@ void GameLoop::updateScore()
 	}
 }
 
-// void GameLoop::redrawFrame(const std::vector<std::shared_ptr<BaseEntity>>& entities)
 void GameLoop::redrawFrame()
 {
     window.draw(backgroundSprite);

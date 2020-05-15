@@ -7,9 +7,9 @@
 #include "Doodler.hpp"
 
 #include "Platform.hpp"
-// #include "RegularPlatform.hpp"
-// #include "FastPlatform.hpp"
-// #include "SlowPlatform.hpp"
+#include "RegularPlatform.hpp"
+#include "FastPlatform.hpp"
+#include "SlowPlatform.hpp"
 
 template<typename T, typename R>
 using Lambda = std::function<T(const std::shared_ptr<R> &)>;

@@ -37,9 +37,9 @@ void GameEngine::checkCollision(std::vector<std::shared_ptr<BaseEntity>>& entiti
 }
 
 void GameEngine::processCollision(const std::shared_ptr<BaseEntity>& entity)
-{
-    std::shared_ptr<Platform> platform = std::dynamic_pointer_cast<Platform>(entity);  
-    if (doesIntersect(entity)) {
+{ 
+    // Init statement for if - Feature of C++17
+    if (std::shared_ptr<Platform> platform = std::dynamic_pointer_cast<Platform>(entity); doesIntersect(platform)) {
         doodler->dy = -static_cast<int>(platform->getSpeed());  // Distance travelled when jumping on this platform
     }
 }

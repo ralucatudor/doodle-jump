@@ -6,6 +6,8 @@ OBJ_PARAMS = *.o
 
 LIB_PARAMS = sfml-app -lsfml-graphics -lsfml-window -lsfml-system
 
+SANITIZER = -fsanitize=address
+
 all:
 	g++ $(flags_all) -I$(INC_PARAMS) $(SCR_PARAMS) 
 	g++ $(OBJ_PARAMS) -o $(LIB_PARAMS) 
