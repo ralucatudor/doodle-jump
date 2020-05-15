@@ -5,7 +5,8 @@
 
 #include "GameLoop.hpp"
 #include "Doodler.hpp"
-#include "Platform.hpp"
+// #include "Platform.hpp"
+#include "PlatformCreator.hpp"
 
 #include "GameEngine.hpp"
 
@@ -30,11 +31,19 @@ int main(int argc, char* argv[])
     GameLoop gameLoop;
     gameLoop.init();
 
+    // PlatformCreator creatorInstance;
     for (size_t i = 0; i < PLATFORM_COUNT; ++i) {
-        /* std::shared_ptr<Platform> platform = std::make_shared<Platform>(Platform());
-           entities.emplace_back(platform); */
-           
+        /* 
+        std::shared_ptr<Platform> platform = std::make_shared<Platform>(Platform());
+        entities.emplace_back(platform); 
         entities.emplace_back(std::shared_ptr<Platform>(new Platform()));   // heap memory allocation
+        */
+        
+        // x MOD 4 => 0 1 2 3 | MOD 3 => 0 1 2 0 | + 1 => 1 2 3 1 
+        // maybe use enum ?
+
+        int type = (i % 4) % 3 + 1;
+        entities.emplace_back(std::shared_ptr<Platform>(PlatformCreator::getPlatform(type)));
     }
 
     std::shared_ptr<Doodler> doodler = std::make_shared<Doodler>(Doodler());

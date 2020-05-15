@@ -1,5 +1,7 @@
 #include "GameEngine.hpp"
 
+#include <iostream>
+
 #include <random>
 
 void GameEngine::checkCollision(std::vector<std::shared_ptr<BaseEntity>>& entities)
@@ -7,7 +9,7 @@ void GameEngine::checkCollision(std::vector<std::shared_ptr<BaseEntity>>& entiti
     std::shared_ptr<BaseEntity> doodlerEntity = *std::find_if(entities.begin(), entities.end(), isDoodler);
 
     //std::shared_ptr<Doodler> doodler (std::dynamic_pointer_cast<Doodler>(doodlerEntity)); 
-    doodler =std::dynamic_pointer_cast<Doodler>(doodlerEntity);  
+    doodler = std::dynamic_pointer_cast<Doodler>(doodlerEntity);  
 
     std::random_device rand_dev;
     std::mt19937 generator(rand_dev());
@@ -36,8 +38,9 @@ void GameEngine::checkCollision(std::vector<std::shared_ptr<BaseEntity>>& entiti
 
 void GameEngine::processCollision(const std::shared_ptr<BaseEntity>& entity)
 {
+    std::shared_ptr<Platform> platform = std::dynamic_pointer_cast<Platform>(entity);  
     if (doesIntersect(entity)) {
-        doodler->dy = -10;
+        doodler->dy = -static_cast<int>(platform->getSpeed());  // Distance travelled when jumping on this platform
     }
 }
 

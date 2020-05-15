@@ -20,5 +20,7 @@ public:
     void setPosition(sf::Vector2f ) override;
 
     sf::Vector2u getTextureSize() override;
+
+    virtual unsigned getSpeed() = 0;
 };
 
