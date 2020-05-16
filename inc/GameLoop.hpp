@@ -23,14 +23,13 @@ private:
 
     void createWindow();
 
-    std::shared_ptr<Doodler> doodler;
-public:
+    std::shared_ptr<Doodler> doodler;    
     
     Entities entities;
 
+    Score<float> totalScore;
+public:
     GameLoop();
-
-    Score<float> totalScore;        // public because I display the final score at the end, in main
     
     void pollEvents();
 
@@ -41,4 +40,6 @@ public:
     void redrawFrame();
 
     sf::RenderWindow& getWindow();
+
+    friend class GameEngine;
 };
