@@ -1,7 +1,5 @@
 #include "Platform.hpp"
 
-#include <random>
-
 void Platform::draw(sf::RenderTarget &target, sf::RenderStates states) const
 {
     target.draw(sprite, states);
@@ -15,7 +13,7 @@ Platform::Platform()
 
     std::random_device rand_dev;
     std::mt19937 generator(rand_dev());
-    std::uniform_int_distribution<unsigned> x(0, WINDOW_WIDTH - texture.getSize().x);
+    std::uniform_int_distribution<unsigned> x(0, WINDOW_WIDTH - getTextureSize().x);
     std::uniform_int_distribution<unsigned> y(0, WINDOW_HEIGHT - 30);
 
     position.x = x(generator);
