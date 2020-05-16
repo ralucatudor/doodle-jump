@@ -60,7 +60,8 @@ void GameEngine::run()
 {
     Logger::getInstance() << "Starting Doodle Jump..." << '\n';
 
-    while (gameLoop.getWindow().isOpen()) 
+    bool gameIsOver = false;
+    while (gameLoop.getWindow().isOpen() && !gameIsOver) 
     {
         gameLoop.pollEvents();
         gameLoop.update();
@@ -68,10 +69,10 @@ void GameEngine::run()
         checkCollision(gameLoop.entities);
         gameLoop.redrawFrame();
 
-        if (bool gameIsOver = (gameLoop.doodler != nullptr && gameLoop.doodler->getPosition().y > WINDOW_HEIGHT); gameIsOver) {
-            displayGameOverWindow();
-            break;
-        }
+        gameIsOver = checkGameOver(gameLoop.doodler);
+    }
+    if (gameIsOver) {
+        displayGameOverWindow();
     }
 }
 

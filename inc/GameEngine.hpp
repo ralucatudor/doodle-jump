@@ -18,7 +18,7 @@ private:
 
     std::shared_ptr<Doodler> doodler;
 
-    const Lambda<bool> isDoodler = [&](const std::shared_ptr<BaseEntity> &entity) -> bool {
+    const Lambda<bool> isDoodler = [&](const std::shared_ptr<BaseEntity>& entity) -> bool {
         return (dynamic_cast<Doodler*>(entity.get()));
     };
 
@@ -27,6 +27,10 @@ private:
             return;
         }
         processCollision(entity);
+    };
+
+    const Lambda<bool, Doodler> checkGameOver = [&](const std::shared_ptr<Doodler>& doodler) {
+        return (doodler != nullptr && doodler->getPosition().y > WINDOW_HEIGHT);
     };
 
     void processCollision(const std::shared_ptr<BaseEntity>&);

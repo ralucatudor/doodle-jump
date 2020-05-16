@@ -1,5 +1,3 @@
-// #include <SFML/Graphics.hpp> already included in the hpp
-// same for #include <memory>
 #include <iostream>
 
 #include "GameEngine.hpp"

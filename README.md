@@ -25,4 +25,4 @@ The project might include:
 - [ ] Databases
 
 
-![](res/screencast/doodle_jump_screencast.gif)
+![](res/screencast/demo.gif)
