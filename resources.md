@@ -16,6 +16,7 @@ What I’ve stumbled through during the process of implementing this game:
 - “Undefined reference to” template class constructor [see here](https://stackoverflow.com/questions/8752837/undefined-reference-to-template-class-constructor)
 - std::function<> and the Intel compiler version 11.1 [see here](https://stackoverflow.com/questions/6527064/stdfunction-and-the-intel-compiler-version-11-1)
 - Does final imply override? [see here](https://stackoverflow.com/questions/29412412/does-final-imply-override)
+- Correct way to inherit from std::exception [see here](https://stackoverflow.com/questions/8152720/correct-way-to-inherit-from-stdexception)
 
 SFML things I’ve stumbled through:
 ---

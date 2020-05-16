@@ -4,68 +4,61 @@
 
 #include <random>
 
-void GameEngine::checkCollision(Entities& entities)
+void GameEngine::checkCollision()
 {
-    std::shared_ptr<BaseEntity> doodlerEntity = *std::find_if(entities.begin(), entities.end(), isDoodler);
-
-    //std::shared_ptr<Doodler> doodler (std::dynamic_pointer_cast<Doodler>(doodlerEntity)); 
-    doodler = std::dynamic_pointer_cast<Doodler>(doodlerEntity);  
-
     std::random_device rand_dev;
     std::mt19937 generator(rand_dev());
 
-    doodler->dy += 0.2;             // mai bine pui dy privat si faci getter si setter
-    doodler->setUpDownPosition();
+    // gameLoop.doodler->dy += 0.2;
+    gameLoop.doodler->set_dy(gameLoop.doodler->get_dy() + 0.2f);
+    gameLoop.doodler->setUpDownPosition();
 
-    if (doodler->getPosition().y < DOODLER_HEIGHT) {    // I maintain my doodler at DOODLER_HEIGHT
-        doodler->setPosition({doodler->getPosition().x, DOODLER_HEIGHT});
+    if (gameLoop.doodler->getPosition().y < DOODLER_HEIGHT) {    // I maintain my doodler at DOODLER_HEIGHT
+        gameLoop.doodler->setPosition({gameLoop.doodler->getPosition().x, DOODLER_HEIGHT});
 
-		for (auto& entity : entities) { 
-            if (std::dynamic_pointer_cast<Platform>(entity))    //(dynamic_cast<Platform*>(entity.get()))
-            { 
-                entity->setPosition({entity->getPosition().x, entity->getPosition().y - doodler->dy}); // vertical translation
-                if (entity->getPosition().y > WINDOW_HEIGHT) {
-                    // set new platform on the top    
-                    std::uniform_int_distribution<unsigned> x(0, WINDOW_WIDTH - entity->getTextureSize().x);	
-                    entity->setPosition({static_cast<float>(x(generator)), 0});
+		for (auto& platform : gameLoop.platforms) { 
+            platform->setPosition({platform->getPosition().x, platform->getPosition().y - gameLoop.doodler->get_dy()}); // vertical translation
+            if (platform->getPosition().y > WINDOW_HEIGHT) {
+                // set new platform on the top    
+                std::uniform_int_distribution<unsigned> x(0, WINDOW_WIDTH - platform->getTextureSize().x);	
+                platform->setPosition({static_cast<float>(x(generator)), 0});
 
-                    if (std::shared_ptr<SlowPlatform> sp = std::dynamic_pointer_cast<SlowPlatform>(entity)) {
-                        if (sp->getHasCollision() == true) {
-                            sp->setHasCollision(false);
-                        }
+                if (std::shared_ptr<SlowPlatform> sp = std::dynamic_pointer_cast<SlowPlatform>(platform)) {
+                    if (sp->getHasCollision() == true) {
+                        sp->setHasCollision(false);
                     }
                 }
             }
         }
 	}
 
-    std::for_each(entities.begin(), entities.end(), processCollisionForEach); 
+    std::for_each(gameLoop.platforms.begin(), gameLoop.platforms.end(), processCollisionForEach); 
 }
 
-void GameEngine::processCollision(const std::shared_ptr<BaseEntity>& entity)
+void GameEngine::processCollision(const std::shared_ptr<Platform>& platform)
 { 
-    // Init statement for if - Feature of C++17
-    if (std::shared_ptr<Platform> platform = std::dynamic_pointer_cast<Platform>(entity); doesIntersect(platform)) {
-        //doodler->dy = -static_cast<int>(platform->getSpeed());  // Distance travelled when jumping on this platform
-    
-        if (std::shared_ptr<SlowPlatform> sp = std::dynamic_pointer_cast<SlowPlatform>(platform)) {
-            if (sp->getHasCollision() == false) {
-                doodler->dy = -static_cast<int>(platform->getSpeed()); 
+    if (doesIntersect(platform)) {
+        if (std::dynamic_pointer_cast<SlowPlatform>(platform)) {
+            // Init statement for if - Feature of C++17
+            if (std::shared_ptr<SlowPlatform> sp = std::dynamic_pointer_cast<SlowPlatform>(platform); sp->getHasCollision() == false) {
+                //gameLoop.doodler->dy = -static_cast<int>(platform->getSpeed()); // Distance travelled when jumping on this platform
+                gameLoop.doodler->set_dy(-static_cast<int>(platform->getSpeed()));
                 sp->setHasCollision(true);
             }
         } else {
-            doodler->dy = -static_cast<int>(platform->getSpeed()); 
+            //gameLoop.doodler->dy = -static_cast<int>(platform->getSpeed()); 
+            gameLoop.doodler->set_dy(-static_cast<int>(platform->getSpeed()));  // float???
         }
     }
 }
 
-bool GameEngine::doesIntersect(const std::shared_ptr<BaseEntity>& platform) const
+bool GameEngine::doesIntersect(const std::shared_ptr<Platform>& platform) const
 {
-    if ((doodler->getPosition().x + DOODLER_RIGHT_BOUNDING_BOX > platform->getPosition().x)
-        && (doodler->getPosition().x + DOODLER_LEFT_BOUNDING_BOX < platform->getPosition().x + platform->getTextureSize().x) 
-        && (doodler->getPosition().y + DOODLER_BOTTOM_BOUNDING_BOX > platform->getPosition().y)
-        && (doodler->getPosition().y + DOODLER_BOTTOM_BOUNDING_BOX < platform->getPosition().y + platform->getTextureSize().y)
-        && (doodler->dy > 0))
+    if ((gameLoop.doodler->getPosition().x + DOODLER_RIGHT_BOUNDING_BOX > platform->getPosition().x)
+        && (gameLoop.doodler->getPosition().x + DOODLER_LEFT_BOUNDING_BOX < platform->getPosition().x + platform->getTextureSize().x) 
+        && (gameLoop.doodler->getPosition().y + DOODLER_BOTTOM_BOUNDING_BOX > platform->getPosition().y)
+        && (gameLoop.doodler->getPosition().y + DOODLER_BOTTOM_BOUNDING_BOX < platform->getPosition().y + platform->getTextureSize().y)
+        && (gameLoop.doodler->get_dy() > 0))
         return 1;
     return 0;
 }
@@ -81,10 +74,10 @@ void GameEngine::run()
         gameLoop.pollEvents();
         gameLoop.update();
         gameLoop.updateScore();
-        checkCollision(gameLoop.entities);
+        checkCollision();
         gameLoop.redrawFrame();
 
-        gameIsOver = checkGameOver(doodler);
+        gameIsOver = checkGameOver(gameLoop.doodler);
     }
     if (gameIsOver) {
         displayGameOverWindow();

@@ -25,7 +25,7 @@ private:
 
     std::shared_ptr<Doodler> doodler;    
     
-    Entities entities;
+    Platforms platforms;
 
     Score<float> totalScore;
 public:

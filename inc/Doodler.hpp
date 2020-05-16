@@ -12,6 +12,8 @@ class Doodler : public BaseEntity
 {
 private:
     float deltaY;
+
+    float dy;
     
     // Overriding sf::Drawable::draw
     void draw(sf::RenderTarget&, sf::RenderStates) const override;
@@ -22,7 +24,13 @@ private:
 public:
     Keyboard keyboardInput;     
 
-    float dy;
+    float get_dy() const {
+        return dy;
+    }
+
+    void set_dy(float value) {
+        dy = value;
+    }
 
     Doodler();
 

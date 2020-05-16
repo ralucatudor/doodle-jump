@@ -25,12 +25,10 @@ GameLoop::GameLoop()
     for (size_t i = 0; i < PLATFORM_COUNT; ++i) {
         // x MOD 4 => 0 1 2 3 | MOD 3 => 0 1 2 0 | + 1 => 1 2 3 1 
         int type = (i % 4) % 3 + 1;
-        entities.emplace_back(PlatformCreator::getPlatform(type));
+        platforms.emplace_back(PlatformCreator::getPlatform(type));
     }
 
     doodler = std::make_shared<Doodler>(Doodler());
-
-    entities.emplace_back(doodler);
 }
 
 void GameLoop::pollEvents()
@@ -48,20 +46,16 @@ void GameLoop::pollEvents()
 }
 
 void GameLoop::update()
-{
-    std::for_each(entities.begin(), entities.end(), [&](const std::shared_ptr<BaseEntity>& item) -> void {
-        if (dynamic_cast<Doodler*>(item.get())) {
-            item->updatePosition(deltaTime);
-        } 
-        else if (dynamic_cast<Platform*>(item.get())) {
-            item->updatePosition();
-        }
+{        
+    doodler->updatePosition(deltaTime);
+    std::for_each(platforms.begin(), platforms.end(), [&](const std::shared_ptr<Platform>& item) -> void {
+        item->updatePosition();
     });
 }
 
 void GameLoop::updateScore()
 {
-    if (doodler->getPosition().y == DOODLER_HEIGHT && doodler->dy < (-1.62)) {
+    if (doodler->getPosition().y == DOODLER_HEIGHT && doodler->get_dy() < (-1.62)) {
         Score<float> addScore(0.5);
 		totalScore = totalScore + addScore;
 	}
@@ -82,8 +76,11 @@ void GameLoop::redrawFrame()
     
     window.draw(scoreText);
 
-    std::for_each(entities.begin(), entities.end(), 
-        [&](const std::shared_ptr<BaseEntity>& item) -> void {
+    // draw doodler
+    window.draw(*doodler);
+    // draw platforms
+    std::for_each(platforms.begin(), platforms.end(), 
+        [&](const std::shared_ptr<Platform>& item) -> void {
             if (std::shared_ptr<SlowPlatform> sp = std::dynamic_pointer_cast<SlowPlatform>(item)) {
                 if (sp->getHasCollision() == false) {
                     window.draw(*item);

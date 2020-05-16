@@ -13,7 +13,7 @@ The project must include:
 - [x] Overloading Operators - << Logger class; += and -= Keyboard class; = and + Score class
 - [x] Heap Memory Allocation
 - [x] Exceptions
-- [x] STL _(std::vector - for entities (doodler and platforms); std::map for keyboard input)_
+- [x] STL _(std::vector - for platforms; std::map for keyboard input)_
 - [x] Lambda expressions
 - [x] Templates
 - [x] Smart pointers
@@ -22,7 +22,13 @@ The project must include:
 
 The project might include:
 - [ ] Move semantics
+- [ ] Multithreading
 - [ ] Databases
 
 
 ![](res/screencast/demo.gif)
+
+
+See [resources](resources.md)
+
+See [documentation](documentation.md)
