@@ -1,7 +1,11 @@
 // DEFINITIONS AND CONSTANTS
 #pragma once
 
+#include <memory>
+#include <vector>
 #include <string>
+
+class BaseEntity;
 
 // Window
 const unsigned int WINDOW_WIDTH = 400;
@@ -26,3 +30,5 @@ const std::string PLATFORM_FILEPATH = "res/img/platform.png";
 const std::string FAST_PLATFORM_FILEPATH = "res/img/fast_platform.png";
 const std::string SLOW_PLATFORM_FILEPATH = "res/img/slow_platform.png";
 const std::string BACKGROUND_FILEPATH = "res/img/background.png";
+
+typedef std::vector<std::shared_ptr<BaseEntity>> Entities;

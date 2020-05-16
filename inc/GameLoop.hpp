@@ -25,7 +25,7 @@ private:
 
 public:
     std::shared_ptr<Doodler> doodler;
-    std::vector<std::shared_ptr<BaseEntity>> entities;
+    Entities entities;
     GameLoop();
 
     Score<float> totalScore;        // public because I display the final score at the end, in main

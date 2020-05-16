@@ -54,3 +54,65 @@ bool GameEngine::doesIntersect(const std::shared_ptr<BaseEntity>& platform) cons
         return 1;
     return 0;
 }
+
+
+void GameEngine::run() 
+{
+    Logger::getInstance() << "Starting Doodle Jump..." << '\n';
+
+    while (gameLoop.getWindow().isOpen()) 
+    {
+        gameLoop.pollEvents();
+        gameLoop.update();
+        gameLoop.updateScore();
+        checkCollision(gameLoop.entities);
+        gameLoop.redrawFrame();
+
+        if (bool gameIsOver = (gameLoop.doodler != nullptr && gameLoop.doodler->getPosition().y > WINDOW_HEIGHT); gameIsOver) {
+            displayGameOverWindow();
+            break;
+        }
+    }
+}
+
+
+void GameEngine::displayGameOverWindow() {
+    Logger::getInstance() << "Doodle Jump Over!" << '\n';
+
+    gameLoop.getWindow().clear(sf::Color::Black);
+
+    sf::Font font;
+	font.loadFromFile("res/font/arial.ttf");
+    sf::Text gameoverText;
+    gameoverText.setFont(font);
+    gameoverText.setString("Game Over!");
+    gameoverText.setCharacterSize(60);
+    gameoverText.setFillColor(sf::Color::White);
+    gameoverText.setPosition(40, 200);
+
+    gameLoop.getWindow().draw(gameoverText);
+
+    // Display final score
+
+    sf::Text finalScoreText;
+	finalScoreText.setFont(font);   
+    finalScoreText.setCharacterSize(40);
+	finalScoreText.setFillColor(sf::Color::White);
+	finalScoreText.setString( "Score: " + std::to_string( static_cast<int>( gameLoop.totalScore.getScore() ) ) );
+    // center the final score text
+    finalScoreText.setPosition(WINDOW_WIDTH/2.0f, WINDOW_HEIGHT/2.0f); //Window width divided by 2, same with height.
+    finalScoreText.setOrigin(finalScoreText.getLocalBounds().width/2.0f, finalScoreText.getLocalBounds().height/2.0f);
+
+    gameLoop.getWindow().draw(finalScoreText);
+    
+    gameLoop.getWindow().display();
+
+    sf::Event event;
+    while (gameLoop.getWindow().isOpen()) {
+        while (gameLoop.getWindow().pollEvent(event)) {
+            if (event.type == sf::Event::Closed) {
+                gameLoop.getWindow().close();
+            }
+        }
+    }
+}

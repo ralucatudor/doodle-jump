@@ -24,8 +24,6 @@ GameLoop::GameLoop()
 
     for (size_t i = 0; i < PLATFORM_COUNT; ++i) {
         // x MOD 4 => 0 1 2 3 | MOD 3 => 0 1 2 0 | + 1 => 1 2 3 1 
-        // maybe use enum ?
-
         int type = (i % 4) % 3 + 1;
         entities.emplace_back(PlatformCreator::getPlatform(type));
     }

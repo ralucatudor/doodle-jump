@@ -3,30 +3,26 @@
 #include <memory>
 #include <functional>
 
-#include "BaseEntity.hpp"
-#include "Doodler.hpp"
+#include "GameLoop.hpp"
 
-#include "Platform.hpp"
-#include "RegularPlatform.hpp"
-#include "FastPlatform.hpp"
-#include "SlowPlatform.hpp"
+#include "Logger.hpp"
 
-template<typename T, typename R>
+template<typename T, typename R = BaseEntity>
 using Lambda = std::function<T(const std::shared_ptr<R> &)>;
 
-// Game engine responsible for collision detection
+// Game engine responsible for collision detection & running and stopping the game
 class GameEngine
 {
-public:
-    void checkCollision(std::vector<std::shared_ptr<BaseEntity>>& entities);
 private:
+    GameLoop gameLoop;
+
     std::shared_ptr<Doodler> doodler;
 
-    const Lambda<bool, BaseEntity> isDoodler = [&](const std::shared_ptr<BaseEntity> &entity) -> bool {
+    const Lambda<bool> isDoodler = [&](const std::shared_ptr<BaseEntity> &entity) -> bool {
         return (dynamic_cast<Doodler*>(entity.get()));
     };
 
-    const Lambda<void, BaseEntity> processCollisionForEach = [&](const std::shared_ptr<BaseEntity>& entity) -> void {
+    const Lambda<void> processCollisionForEach = [&](const std::shared_ptr<BaseEntity>& entity) -> void {
         if (doodler == nullptr || isDoodler(entity)) {
             return;
         }
@@ -36,4 +32,10 @@ private:
     void processCollision(const std::shared_ptr<BaseEntity>&);
 
     bool doesIntersect(const std::shared_ptr<BaseEntity>&) const;
+public:
+    void checkCollision(Entities& entities);
+
+    void run();
+
+    void displayGameOverWindow();
 };
