@@ -78,14 +78,19 @@ void GameLoop::redrawFrame()
     scoreText.setCharacterSize(40);
 	scoreText.setFillColor(sf::Color::Black);
     
-    //scoreText.setString("Score: " + std::to_string(totalScore.getScore()));
-	scoreText.setString( "Score: " + std::to_string( static_cast<int>( totalScore.getScore() ) ) );
+	scoreText.setString( "Score: " + std::to_string(static_cast<int>(totalScore.getScore())));
     
     window.draw(scoreText);
 
     std::for_each(entities.begin(), entities.end(), 
         [&](const std::shared_ptr<BaseEntity>& item) -> void {
-            window.draw(*item);
+            if (std::shared_ptr<SlowPlatform> sp = std::dynamic_pointer_cast<SlowPlatform>(item)) {
+                if (sp->getHasCollision() == false) {
+                    window.draw(*item);
+                }
+            }else{
+                window.draw(*item);
+            }
         });
 
     window.display();

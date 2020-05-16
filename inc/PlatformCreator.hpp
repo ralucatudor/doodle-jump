@@ -6,6 +6,8 @@
 #include "SlowPlatform.hpp"
 #include "FastPlatform.hpp"
 
+#include "Exception.hpp"
+
 class PlatformCreator
 {
 public:

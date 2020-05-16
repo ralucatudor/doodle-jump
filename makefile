@@ -1,10 +1,10 @@
-flags_all = -c -std=c++2a
+flags_all = -c -std=c++2a -lstdc++fs
 
 SCR_PARAMS = main.cpp src/*.cpp
 INC_PARAMS = inc/
 OBJ_PARAMS = *.o
 
-LIB_PARAMS = sfml-app -lsfml-graphics -lsfml-window -lsfml-system
+LIB_PARAMS = sfml-app -lsfml-graphics -lsfml-window -lsfml-system 
 
 SANITIZER = -fsanitize=address
 

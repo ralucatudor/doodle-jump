@@ -1,17 +1,28 @@
 #include "PlatformCreator.hpp"
 
-#include <iostream>
+#include "Logger.hpp"
 
 std::shared_ptr<Platform> PlatformCreator::getPlatform(const int& choice)
 {
-    if (choice == 1) {
-        return std::make_shared<RegularPlatform>(RegularPlatform());
+    try {
+        switch(choice) {
+            case 1:
+                return std::make_shared<RegularPlatform>(RegularPlatform());
+                break;
+            case 2:
+                return std::make_shared<SlowPlatform>(SlowPlatform());
+                break;
+            case 3:
+                return std::make_shared<FastPlatform>(FastPlatform());
+                break;
+            default:
+                throw UndefinedPlatformException();
+                break;
+        }
     }
-    if (choice == 2) {
-        return std::make_shared<SlowPlatform>(SlowPlatform());
+    catch (UndefinedPlatformException& e)
+    {
+        Logger::getInstance() << "Exception: " << e.what() << '\n';
+        return nullptr;
     }
-    if (choice == 3) {
-        return std::make_shared<FastPlatform>(FastPlatform());
-    }
-    return nullptr; // maybe throw exception
 }

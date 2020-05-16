@@ -4,7 +4,7 @@
 
 #include <random>
 
-void GameEngine::checkCollision(std::vector<std::shared_ptr<BaseEntity>>& entities)
+void GameEngine::checkCollision(Entities& entities)
 {
     std::shared_ptr<BaseEntity> doodlerEntity = *std::find_if(entities.begin(), entities.end(), isDoodler);
 
@@ -28,6 +28,12 @@ void GameEngine::checkCollision(std::vector<std::shared_ptr<BaseEntity>>& entiti
                     // set new platform on the top    
                     std::uniform_int_distribution<unsigned> x(0, WINDOW_WIDTH - entity->getTextureSize().x);	
                     entity->setPosition({static_cast<float>(x(generator)), 0});
+
+                    if (std::shared_ptr<SlowPlatform> sp = std::dynamic_pointer_cast<SlowPlatform>(entity)) {
+                        if (sp->getHasCollision() == true) {
+                            sp->setHasCollision(false);
+                        }
+                    }
                 }
             }
         }
@@ -40,7 +46,16 @@ void GameEngine::processCollision(const std::shared_ptr<BaseEntity>& entity)
 { 
     // Init statement for if - Feature of C++17
     if (std::shared_ptr<Platform> platform = std::dynamic_pointer_cast<Platform>(entity); doesIntersect(platform)) {
-        doodler->dy = -static_cast<int>(platform->getSpeed());  // Distance travelled when jumping on this platform
+        //doodler->dy = -static_cast<int>(platform->getSpeed());  // Distance travelled when jumping on this platform
+    
+        if (std::shared_ptr<SlowPlatform> sp = std::dynamic_pointer_cast<SlowPlatform>(platform)) {
+            if (sp->getHasCollision() == false) {
+                doodler->dy = -static_cast<int>(platform->getSpeed()); 
+                sp->setHasCollision(true);
+            }
+        } else {
+            doodler->dy = -static_cast<int>(platform->getSpeed()); 
+        }
     }
 }
 

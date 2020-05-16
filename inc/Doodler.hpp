@@ -6,6 +6,8 @@
 #include "BaseEntity.hpp"
 #include "Keyboard.hpp"
 
+#include "Exception.hpp"
+
 class Doodler : public BaseEntity
 {
 private:

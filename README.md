@@ -12,7 +12,7 @@ The project must include:
 - [x] Abstract Classes
 - [x] Overloading Operators - << Logger class; += and -= Keyboard class; = and + Score class
 - [x] Heap Memory Allocation
-- [ ] Exceptions
+- [x] Exceptions
 - [x] STL _(std::vector - for entities (doodler and platforms); std::map for keyboard input)_
 - [x] Lambda expressions
 - [x] Templates

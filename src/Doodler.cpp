@@ -1,5 +1,8 @@
 #include "Doodler.hpp"
 
+#include "Logger.hpp"
+#include <filesystem>
+
 // Overriding sf::Drawable::draw
 void Doodler::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
@@ -9,7 +12,14 @@ void Doodler::draw(sf::RenderTarget& target, sf::RenderStates states) const
 Doodler::Doodler() //: position(sf::Vector2f(WINDOW_WIDTH / 2, 150))
 {
     position = sf::Vector2f(WINDOW_WIDTH / 2, 150);
-    texture.loadFromFile(DOODLER_FILEPATH);
+    try {
+        if (!std::filesystem::exists(DOODLER_FILEPATH)) 
+            throw IncorrectFilePathException(DOODLER_FILEPATH);
+        texture.loadFromFile(DOODLER_FILEPATH);
+    }
+    catch(IncorrectFilePathException& e) {
+        Logger::getInstance() << "Exception: " << e.what() << '\n';
+    }
     sprite.setTexture(texture);
     sprite.setPosition(position);
 }
