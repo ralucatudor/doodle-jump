@@ -23,7 +23,7 @@ private:
     };
 
     const Lambda<void> processCollisionForEach = [&](const std::shared_ptr<BaseEntity>& entity) -> void {
-        if (doodler == nullptr || isDoodler(entity)) {
+        if (isDoodler(entity)) {
             return;
         }
         processCollision(entity);

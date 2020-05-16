@@ -69,7 +69,7 @@ void GameEngine::run()
         checkCollision(gameLoop.entities);
         gameLoop.redrawFrame();
 
-        gameIsOver = checkGameOver(gameLoop.doodler);
+        gameIsOver = checkGameOver(doodler);
     }
     if (gameIsOver) {
         displayGameOverWindow();

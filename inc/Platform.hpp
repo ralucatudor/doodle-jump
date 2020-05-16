@@ -5,7 +5,8 @@
 
 class Platform : public BaseEntity
 {
-    void draw(sf::RenderTarget& target, sf::RenderStates states) const override;
+protected:
+    void draw(sf::RenderTarget& target, sf::RenderStates states) const override final;
 public:
     Platform();
 
