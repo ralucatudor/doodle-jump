@@ -15,7 +15,7 @@ RegularPlatform::RegularPlatform() : Platform()
     position.y = y(generator);
 }
 
-unsigned RegularPlatform::getSpeed()
+unsigned RegularPlatform::getDistance()
 {
-    return 10;
+    return REGULAR_PLATFORM_DISTANCE;
 }

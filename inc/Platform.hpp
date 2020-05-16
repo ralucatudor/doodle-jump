@@ -16,7 +16,7 @@ public:
 
     Platform(const Platform& ob); 
 
-    void updatePosition() override;
+    void updatePosition();
 
     sf::Vector2f getPosition() const override final; 
 
@@ -24,6 +24,7 @@ public:
 
     sf::Vector2u getTextureSize() override;
 
-    virtual unsigned getSpeed() = 0;
+    // How far up the doodler will jump after collision with the plaform
+    virtual unsigned getDistance() = 0;
 };
 

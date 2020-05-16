@@ -7,5 +7,5 @@ class RegularPlatform : public Platform
 public:
     RegularPlatform();
 
-    unsigned getSpeed() override;
+    unsigned getDistance() override;
 };

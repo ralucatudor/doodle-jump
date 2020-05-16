@@ -30,7 +30,6 @@ Doodler::Doodler(const Doodler& ob)         // copy constructor
     sprite = ob.sprite;
     sprite.setTexture(texture);
     position = ob.position;
-    deltaY = ob.deltaY;
 }
 
 void Doodler::updatePosition(const float deltaTime)
@@ -57,16 +56,6 @@ void Doodler::setLeftRightPosition(const float move_speed, const float deltaTime
     }
 }
 
-void Doodler::setDeltaY(const float nextY) 
-{
-    deltaY = position.y - nextY;
-}
-
-float Doodler::getDeltaY() 
-{
-    return deltaY;
-}
-
 sf::Vector2f Doodler::getPosition() const
 {
     return position;
@@ -85,4 +74,19 @@ void Doodler::setUpDownPosition()
 void Doodler::setPosition(sf::Vector2f newPosition) 
 {
     position = newPosition;
+}
+
+float Doodler::get_dy() const
+{
+    return dy;
+}
+
+void Doodler::set_dy(float value) 
+{
+    dy = value;
+}
+
+Keyboard& Doodler::getKeyboardInput() 
+{
+    return keyboardInput;
 }

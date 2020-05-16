@@ -9,7 +9,6 @@ void GameEngine::checkCollision()
     std::random_device rand_dev;
     std::mt19937 generator(rand_dev());
 
-    // gameLoop.doodler->dy += 0.2;
     gameLoop.doodler->set_dy(gameLoop.doodler->get_dy() + 0.2f);
     gameLoop.doodler->setUpDownPosition();
 
@@ -19,7 +18,7 @@ void GameEngine::checkCollision()
 		for (auto& platform : gameLoop.platforms) { 
             platform->setPosition({platform->getPosition().x, platform->getPosition().y - gameLoop.doodler->get_dy()}); // vertical translation
             if (platform->getPosition().y > WINDOW_HEIGHT) {
-                // set new platform on the top    
+                // Set new platform on the top    
                 std::uniform_int_distribution<unsigned> x(0, WINDOW_WIDTH - platform->getTextureSize().x);	
                 platform->setPosition({static_cast<float>(x(generator)), 0});
 
@@ -41,13 +40,11 @@ void GameEngine::processCollision(const std::shared_ptr<Platform>& platform)
         if (std::dynamic_pointer_cast<SlowPlatform>(platform)) {
             // Init statement for if - Feature of C++17
             if (std::shared_ptr<SlowPlatform> sp = std::dynamic_pointer_cast<SlowPlatform>(platform); sp->getHasCollision() == false) {
-                //gameLoop.doodler->dy = -static_cast<int>(platform->getSpeed()); // Distance travelled when jumping on this platform
-                gameLoop.doodler->set_dy(-static_cast<int>(platform->getSpeed()));
+                gameLoop.doodler->set_dy(-static_cast<float>(platform->getDistance()));// Distance travelled when jumping on this platform
                 sp->setHasCollision(true);
             }
         } else {
-            //gameLoop.doodler->dy = -static_cast<int>(platform->getSpeed()); 
-            gameLoop.doodler->set_dy(-static_cast<int>(platform->getSpeed()));  // float???
+            gameLoop.doodler->set_dy(-static_cast<float>(platform->getDistance()));  // float???
         }
     }
 }
@@ -62,7 +59,6 @@ bool GameEngine::doesIntersect(const std::shared_ptr<Platform>& platform) const
         return 1;
     return 0;
 }
-
 
 void GameEngine::run() 
 {
@@ -83,7 +79,6 @@ void GameEngine::run()
         displayGameOverWindow();
     }
 }
-
 
 void GameEngine::displayGameOverWindow() {
     Logger::getInstance() << "Doodle Jump Over!" << '\n';

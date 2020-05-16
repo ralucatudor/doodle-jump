@@ -17,7 +17,17 @@ SlowPlatform::SlowPlatform() : Platform()
     hasCollision = false;
 }
 
-unsigned SlowPlatform::getSpeed()
+unsigned SlowPlatform::getDistance()
 {
-    return 7;
+    return SLOW_PLATFORM_DISTANCE;
+}
+
+bool SlowPlatform::getHasCollision() const 
+{
+    return hasCollision;
+}
+
+void SlowPlatform::setHasCollision(bool value) 
+{
+    hasCollision = value;
 }

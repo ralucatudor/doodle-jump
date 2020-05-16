@@ -8,7 +8,7 @@
 #include "Logger.hpp"
 
 template<typename T, typename R = Platform>
-using Lambda = std::function<T(const std::shared_ptr<R> &)>;
+using lambda = std::function<T(const std::shared_ptr<R> &)>;
 
 // Game engine responsible for collision detection & running and stopping the game
 class GameEngine
@@ -16,12 +16,11 @@ class GameEngine
 private:
     GameLoop gameLoop;
 
-
-    const Lambda<void> processCollisionForEach = [&](const std::shared_ptr<Platform>& platform) -> void {
+    const lambda<void> processCollisionForEach = [&](const std::shared_ptr<Platform>& platform) -> void {
         processCollision(platform);
     };
 
-    const Lambda<bool, Doodler> checkGameOver = [&](const std::shared_ptr<Doodler>& doodler) {
+    const lambda<bool, Doodler> checkGameOver = [&](const std::shared_ptr<Doodler>& doodler) {
         return (doodler != nullptr && doodler->getPosition().y > WINDOW_HEIGHT);
     };
 

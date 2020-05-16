@@ -11,42 +11,34 @@
 class Doodler : public BaseEntity
 {
 private:
-    float deltaY;
-
-    float dy;
+    float dy;   // delta y
     
     // Overriding sf::Drawable::draw
     void draw(sf::RenderTarget&, sf::RenderStates) const override;
 
     void setLeftRightPosition(const float, const float);
-
-    void setDeltaY(const float);
-public:
+    
     Keyboard keyboardInput;     
-
-    float get_dy() const {
-        return dy;
-    }
-
-    void set_dy(float value) {
-        dy = value;
-    }
-
+public:
     Doodler();
 
     ~Doodler() override = default;
 
     Doodler(const Doodler& ob); 
 
-    void updatePosition(const float) override;
+    void updatePosition(const float);
 
     sf::Vector2f getPosition() const override; 
 
     void setPosition(sf::Vector2f ) override;
 
-    float getDeltaY();
-
     sf::Vector2u getTextureSize() override;
 
     void setUpDownPosition();
+
+    float get_dy() const;
+
+    void set_dy(float);
+
+    Keyboard& getKeyboardInput();
 };

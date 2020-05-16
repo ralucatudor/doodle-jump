@@ -15,7 +15,7 @@ FastPlatform::FastPlatform() : Platform()
     position.y = y(generator);
 }
 
-unsigned FastPlatform::getSpeed()
+unsigned FastPlatform::getDistance()
 {
-    return 15;
+    return FAST_PLATFORM_DISTANCE;
 }

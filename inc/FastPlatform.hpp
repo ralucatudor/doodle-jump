@@ -7,5 +7,5 @@ class FastPlatform : public Platform
 public:
     FastPlatform();
 
-    unsigned getSpeed() override;
+    unsigned getDistance() override;
 };

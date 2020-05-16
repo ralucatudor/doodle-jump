@@ -9,13 +9,9 @@ private:
 public:
     SlowPlatform();
 
-    unsigned getSpeed() override;
+    unsigned getDistance() override;
 
-    bool getHasCollision() const {
-        return hasCollision;
-    }
+    bool getHasCollision() const;
 
-    void setHasCollision(bool value) {
-        hasCollision = value;
-    }
+    void setHasCollision(bool);
 };
