@@ -71,13 +71,13 @@ void GameLoop::redrawFrame()
     window.draw(backgroundSprite);
 
     sf::Font font;
-	font.loadFromFile(FONT_FILEPATH);
+    font.loadFromFile(FONT_FILEPATH);
     sf::Text scoreText;
-	scoreText.setFont(font);   
+    scoreText.setFont(font);
     scoreText.setCharacterSize(40);
-	scoreText.setFillColor(sf::Color::Black);
+    scoreText.setFillColor(sf::Color::Black);
     
-	scoreText.setString( "Score: " + std::to_string(static_cast<int>(totalScore.getScore())));
+    scoreText.setString( "Score: " + std::to_string(static_cast<int>(totalScore.getScore())));
     
     // Draw score
     window.draw(scoreText);

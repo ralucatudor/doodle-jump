@@ -12,8 +12,8 @@ void GameEngine::checkCollision()
 
     if (gameLoop.doodler->getPosition().y < DOODLER_HEIGHT) {    // I maintain my doodler at DOODLER_HEIGHT
         gameLoop.doodler->setPosition({gameLoop.doodler->getPosition().x, DOODLER_HEIGHT});
-
-		for (auto& platform : gameLoop.platforms) { 
+        
+        for (auto& platform : gameLoop.platforms) { 
             platform->setPosition({platform->getPosition().x, platform->getPosition().y - gameLoop.doodler->get_dy()}); // vertical translation
             if (platform->getPosition().y > WINDOW_HEIGHT) {
                 // Set new platform on the top    
@@ -86,7 +86,7 @@ void GameEngine::displayGameOverWindow() {
     gameLoop.getWindow().clear(sf::Color::Black);
 
     sf::Font font;
-	font.loadFromFile("res/font/arial.ttf");
+    font.loadFromFile("res/font/arial.ttf");
     sf::Text gameoverText;
     gameoverText.setFont(font);
     gameoverText.setString("Game Over!");
@@ -99,10 +99,10 @@ void GameEngine::displayGameOverWindow() {
     // Display final score
 
     sf::Text finalScoreText;
-	finalScoreText.setFont(font);   
+    finalScoreText.setFont(font);   
     finalScoreText.setCharacterSize(40);
-	finalScoreText.setFillColor(sf::Color::White);
-	finalScoreText.setString( "Score: " + std::to_string( static_cast<int>( gameLoop.totalScore.getScore() ) ) );
+    finalScoreText.setFillColor(sf::Color::White);
+    finalScoreText.setString( "Score: " + std::to_string( static_cast<int>( gameLoop.totalScore.getScore() ) ) );
     // Center the final score text
     finalScoreText.setPosition(WINDOW_WIDTH/2.0f, WINDOW_HEIGHT/2.0f); //Window width divided by 2, same with height.
     finalScoreText.setOrigin(finalScoreText.getLocalBounds().width/2.0f, finalScoreText.getLocalBounds().height/2.0f);

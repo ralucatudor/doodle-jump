@@ -6,7 +6,7 @@ void Doodler::draw(sf::RenderTarget& target, sf::RenderStates states) const
     target.draw(sprite, states);
 }
 
-Doodler::Doodler() //: position(sf::Vector2f(WINDOW_WIDTH / 2, 150))
+Doodler::Doodler() 
 {
     position = sf::Vector2f(WINDOW_WIDTH / 2, 150);
     try {

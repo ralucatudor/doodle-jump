@@ -1,7 +1,7 @@
 #include "Score.hpp"
 
 template<typename T>
-Score<T>::Score(T score): score(score) {}
+Score<T>::Score(T score) : score(score) {}
 
 template<typename T>
 Score<T>::~Score() 

@@ -6,7 +6,7 @@ Keyboard::Keyboard()
     keysMap[sf::Keyboard::Right] = false;
 }
 
-std::map<sf::Keyboard::Key, bool>& Keyboard::getKeysMap()
+std::map<sf::Keyboard::Key, bool> Keyboard::getKeysMap() const
 {
     return keysMap;
 }
