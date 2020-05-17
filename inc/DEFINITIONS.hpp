@@ -4,6 +4,7 @@
 #include <memory>
 #include <vector>
 #include <string>
+#include <functional>
 
 class Platform; // (Note that "DEFINITIONS.hpp" is already included in "Platform.hpp",
                 // therefore I'm not including "Platform.hpp" in "DEFINITIONS.hpp", too)
@@ -38,3 +39,7 @@ const std::string PLATFORM_FILEPATH = "res/img/platform.png";
 const std::string FAST_PLATFORM_FILEPATH = "res/img/fast_platform.png";
 const std::string SLOW_PLATFORM_FILEPATH = "res/img/slow_platform.png";
 const std::string BACKGROUND_FILEPATH = "res/img/background.png";
+
+// lambda used in GameEngine class
+template<typename T, typename R = Platform>
+using lambda = std::function<T(const std::shared_ptr<R> &)>;

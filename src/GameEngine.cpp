@@ -1,8 +1,6 @@
 #include "GameEngine.hpp"
 
-#include <iostream>
-
-#include <random>
+GameEngine::~GameEngine() {}
 
 void GameEngine::checkCollision()
 {
@@ -43,8 +41,10 @@ void GameEngine::processCollision(const std::shared_ptr<Platform>& platform)
                 gameLoop.doodler->set_dy(-static_cast<float>(platform->getDistance()));// Distance travelled when jumping on this platform
                 sp->setHasCollision(true);
             }
+            // Note: I do not call setHasCollision if the doodler intersects a SlowPlatform that has "hasCollision" = true
+            // because this means that the platform is not visible.
         } else {
-            gameLoop.doodler->set_dy(-static_cast<float>(platform->getDistance()));  // float???
+            gameLoop.doodler->set_dy(-static_cast<float>(platform->getDistance()));
         }
     }
 }
@@ -103,7 +103,7 @@ void GameEngine::displayGameOverWindow() {
     finalScoreText.setCharacterSize(40);
 	finalScoreText.setFillColor(sf::Color::White);
 	finalScoreText.setString( "Score: " + std::to_string( static_cast<int>( gameLoop.totalScore.getScore() ) ) );
-    // center the final score text
+    // Center the final score text
     finalScoreText.setPosition(WINDOW_WIDTH/2.0f, WINDOW_HEIGHT/2.0f); //Window width divided by 2, same with height.
     finalScoreText.setOrigin(finalScoreText.getLocalBounds().width/2.0f, finalScoreText.getLocalBounds().height/2.0f);
 

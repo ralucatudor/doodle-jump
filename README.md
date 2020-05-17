@@ -7,18 +7,18 @@
 Object Oriented Programming Project - Doodle Jump Game :computer:
 
 The project must include:
-- [x] Graphical Interface (SDL, SFML, Qt, etc.) - C++ API 
-- [x] RTTI (Run-time type information)
-- [x] Abstract Classes
-- [x] Overloading Operators - << Logger class; += and -= Keyboard class; = and + Score class
-- [x] Heap Memory Allocation
-- [x] Exceptions
-- [x] STL _(std::vector - for platforms; std::map for keyboard input)_
-- [x] Lambda expressions
-- [x] Templates
-- [x] Smart pointers
-- [x] Design patterns (minimum 2) - Singleton (Logger) & Factory
-- [x] Features of C++17/20 (constexpr, consteval, constinit, fold expressions, init statement for if/switch, etc.)
+- [x] **Graphical Interface (SDL, SFML, Qt, etc.) - C++ API**
+- [x] **RTTI (Run-time type information)**: GameLoop (line 91), GamEngine (lines 23, 38, 40) - [dynamic_pointer_cast](http://www.cplusplus.com/reference/memory/dynamic_pointer_cast/). Also used [static_cast](https://en.cppreference.com/w/cpp/language/static_cast)
+- [x] **Abstract Classes**: BaseEntity and Platform
+- [x] **Overloading Operators**: << Logger class; += and -= Keyboard class; = and + Score class (and some more assignment operators)
+- [x] **Heap Memory Allocation**
+- [x] **Exceptions**: see Exception.hpp
+- [x] **STL**: std::vector - for platforms; std::map for keyboard input
+- [x] **Lambda expressions**: GameEngine.hpp (starting at lines 15, 19), GameLoop.cpp (starting at lines 53, 90)
+- [x] **Templates**: Score is a template class; also used a template for 'lambda' (see DEFINITIONS.hpp)
+- [x] **Smart pointers**: [shared_ptr](https://en.cppreference.com/w/cpp/memory/shared_ptr)
+- [x] **Design patterns (minimum 2)**: Singleton (Logger) & Factory (PlatformCreator)
+- [x] **Features of C++17/20 _(constexpr, consteval, constinit, fold expressions, init statement for if/switch, etc.)_**: [init statement for if](https://en.cppreference.com/w/cpp/language/if) and [std::filesystem::exists](https://en.cppreference.com/w/cpp/filesystem/exists) (both since C++17)
 
 The project might include:
 - [ ] Move semantics
@@ -26,12 +26,14 @@ The project might include:
 - [ ] Computer Network / Socket Programming
 - [ ] Databases
 
-## Demo
+## Demo :computer:
 
 <p>
 <img src="res/screencast/demo.gif" width=30%>
 <img src="res/screencast/final_demo.gif" width=30%>
 </p>
+
+The second demo is the ***final version***! If the doodler jumps on the red platfom, that platform disappears. Note that each type of platform _(green - which is the regular one and appears twice as much as the others; red - slow platfom; light blue - fast platform)_ makes the doodler jump a different distance.
 
 ## Documentation
 

@@ -1,6 +1,6 @@
 #include "PlatformCreator.hpp"
 
-#include "Logger.hpp"
+PlatformCreator::~PlatformCreator() {}
 
 std::shared_ptr<Platform> PlatformCreator::getPlatform(const int& choice)
 {

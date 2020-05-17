@@ -1,8 +1,5 @@
 #include "Doodler.hpp"
 
-#include "Logger.hpp"
-#include <filesystem>
-
 // Overriding sf::Drawable::draw
 void Doodler::draw(sf::RenderTarget& target, sf::RenderStates states) const
 {
@@ -24,7 +21,10 @@ Doodler::Doodler() //: position(sf::Vector2f(WINDOW_WIDTH / 2, 150))
     sprite.setPosition(position);
 }
 
-Doodler::~Doodler() {}
+Doodler::~Doodler() 
+{
+    dy = 0;
+}
 
 Doodler::Doodler(const Doodler& other)  
 {

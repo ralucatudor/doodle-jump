@@ -1,12 +1,13 @@
 #pragma once
 
 #include <SFML/Graphics.hpp>
+#include <filesystem>
 
 #include "DEFINITIONS.hpp"
 #include "BaseEntity.hpp"
 #include "Keyboard.hpp"
-
 #include "Exception.hpp"
+#include "Logger.hpp"
 
 class Doodler : public BaseEntity
 {

@@ -4,7 +4,10 @@ template<typename T>
 Score<T>::Score(T score): score(score) {}
 
 template<typename T>
-Score<T>::~Score() {}
+Score<T>::~Score() 
+{
+    score = 0;
+}
 
 template<typename T>
 Score<T>::Score(const Score<T>& ob)     // copy constructor

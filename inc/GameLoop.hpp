@@ -7,7 +7,6 @@
 #include "BaseEntity.hpp"
 #include "Doodler.hpp"
 #include "PlatformCreator.hpp"
-
 #include "Score.hpp"
 
 class GameLoop 

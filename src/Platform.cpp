@@ -7,6 +7,9 @@ void Platform::draw(sf::RenderTarget &target, sf::RenderStates states) const
 
 Platform::Platform() 
 {
+    texture.loadFromFile(PLATFORM_FILEPATH);
+    sprite.setTexture(texture);
+
     sprite.setPosition(position);
 
     std::random_device rand_dev;

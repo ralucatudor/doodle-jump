@@ -1,7 +1,5 @@
 #include "GameLoop.hpp"
 
-#include <iostream>
-
 void GameLoop::createWindow()
 {   
     window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), WINDOW_TITLE);
@@ -23,7 +21,8 @@ GameLoop::GameLoop()
     backgroundSprite.setTexture(backgroundTexture);
 
     for (size_t i = 0; i < PLATFORM_COUNT; ++i) {
-        // x MOD 4 => 0 1 2 3 | MOD 3 => 0 1 2 0 | + 1 => 1 2 3 1 
+        // I wanted to have 2 times more regular_platfoms than slow/fast_platforms
+        // x MOD 4 => 0 1 2 3 | MOD 3 => 0 1 2 0 | + 1 => 1 2 3 1 (Note: 1 = regular, 2 = slow & 3 = fast)
         int type = (i % 4) % 3 + 1;
         platforms.emplace_back(PlatformCreator::getPlatform(type));
     }
@@ -50,9 +49,12 @@ void GameLoop::pollEvents()
 void GameLoop::update()
 {        
     doodler->updatePosition(deltaTime);
-    std::for_each(platforms.begin(), platforms.end(), [&](const std::shared_ptr<Platform>& item) -> void {
-        item->updatePosition();
-    });
+
+    const lambda<void> drawEach = [&](const std::shared_ptr<Platform>& platform) -> void {
+        platform->updatePosition();
+    };
+
+    std::for_each(platforms.begin(), platforms.end(), drawEach);
 }
 
 void GameLoop::updateScore()
@@ -65,6 +67,7 @@ void GameLoop::updateScore()
 
 void GameLoop::redrawFrame()
 {
+    // Draw background
     window.draw(backgroundSprite);
 
     sf::Font font;
@@ -76,18 +79,23 @@ void GameLoop::redrawFrame()
     
 	scoreText.setString( "Score: " + std::to_string(static_cast<int>(totalScore.getScore())));
     
+    // Draw score
     window.draw(scoreText);
 
-    // draw doodler
+    // Draw doodler
     window.draw(*doodler);
-    // draw platforms
+
+    // Draw platforms
     std::for_each(platforms.begin(), platforms.end(), 
         [&](const std::shared_ptr<Platform>& item) -> void {
             if (std::shared_ptr<SlowPlatform> sp = std::dynamic_pointer_cast<SlowPlatform>(item)) {
                 if (sp->getHasCollision() == false) {
                     window.draw(*item);
                 }
-            }else{
+                // is hasCollision = true, then that slow_platform should not be visible
+                // (it 'disappears' after collision)
+            }
+            else {
                 window.draw(*item);
             }
         });
