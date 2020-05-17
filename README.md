@@ -25,10 +25,21 @@ The project might include:
 - [ ] Multithreading
 - [ ] Databases
 
+## Demo
 
-![](res/screencast/demo.gif)
+<p>
+<img src="res/screencast/demo.gif" width=49%>
+<img src="res/screencast/final_demo.gif" width=49%>
+</p>
+
+<!-- ![](res/screencast/demo.gif) -->
 
 
-See [resources](resources.md)
 
-See [documentation](documentation.md)
+<!-- ![](res/screencast/final_demo.gif) -->
+
+## Documentation
+
+See [documentation](documentation.md).
+
+See [resources](resources.md).
