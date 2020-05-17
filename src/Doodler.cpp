@@ -86,7 +86,7 @@ void Doodler::set_dy(float value)
     dy = value;
 }
 
-Keyboard& Doodler::getKeyboardInput() 
+void Doodler::handleKeyboardInput(const sf::Event& event) 
 {
-    return keyboardInput;
+    keyboardInput.inputHandler(event);
 }

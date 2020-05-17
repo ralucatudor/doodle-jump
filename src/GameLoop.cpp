@@ -40,7 +40,7 @@ void GameLoop::pollEvents()
             window.close();
         }
         else {
-            doodler->getKeyboardInput().inputHandler(event);
+            doodler->handleKeyboardInput(event);
         }
     }    
 }

@@ -40,5 +40,5 @@ public:
 
     void set_dy(float);
 
-    Keyboard& getKeyboardInput();
+    void handleKeyboardInput(const sf::Event&);
 };
