@@ -7,13 +7,13 @@
 Object Oriented Programming Project - Doodle Jump Game :computer:
 
 The project must include:
-- [x] **Graphical Interface (SDL, SFML, Qt, etc.) - C++ API**
-- [x] **RTTI (Run-time type information)**: GameLoop (line 91), GamEngine (lines 23, 38, 40) - [dynamic_pointer_cast](http://www.cplusplus.com/reference/memory/dynamic_pointer_cast/). Also used [static_cast](https://en.cppreference.com/w/cpp/language/static_cast)
+- [x] **Graphical Interface (SDL, SFML, Qt, etc.) - C++ API** - used SFML
+- [x] **RTTI (Run-time type information)**: GameLoop (line 91), GameEngine (lines 23, 38, 40) - [dynamic_pointer_cast](http://www.cplusplus.com/reference/memory/dynamic_pointer_cast/). Also used [static_cast](https://en.cppreference.com/w/cpp/language/static_cast)
 - [x] **Abstract Classes**: BaseEntity and Platform
 - [x] **Overloading Operators**: << Logger class; += and -= Keyboard class; = and + Score class (and some more assignment operators)
 - [x] **Heap Memory Allocation**
 - [x] **Exceptions**: see Exception.hpp
-- [x] **STL**: std::vector - for platforms; std::map for keyboard input
+- [x] **STL**: std::vector - for platforms; std::map for keyboard input (see Keyboard class)
 - [x] **Lambda expressions**: GameEngine.hpp (starting at lines 15, 19), GameLoop.cpp (starting at lines 53, 90)
 - [x] **Templates**: Score is a template class; also used a template for 'lambda' (see DEFINITIONS.hpp)
 - [x] **Smart pointers**: [shared_ptr](https://en.cppreference.com/w/cpp/memory/shared_ptr)
