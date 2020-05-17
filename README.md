@@ -23,6 +23,7 @@ The project must include:
 The project might include:
 - [ ] Move semantics
 - [ ] Multithreading
+- [ ] Computer Network / Socket Programming
 - [ ] Databases
 
 ## Demo
@@ -31,12 +32,6 @@ The project might include:
 <img src="res/screencast/demo.gif" width=49%>
 <img src="res/screencast/final_demo.gif" width=49%>
 </p>
-
-<!-- ![](res/screencast/demo.gif) -->
-
-
-
-<!-- ![](res/screencast/final_demo.gif) -->
 
 ## Documentation
 
