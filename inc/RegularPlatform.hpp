@@ -7,5 +7,7 @@ class RegularPlatform : public Platform
 public:
     RegularPlatform();
 
+    ~RegularPlatform();
+
     unsigned getDistance() override;
 };

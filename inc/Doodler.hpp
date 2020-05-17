@@ -22,9 +22,11 @@ private:
 public:
     Doodler();
 
-    ~Doodler() override = default;
+    ~Doodler();
 
-    Doodler(const Doodler& ob); 
+    Doodler(const Doodler&);
+
+    Doodler& operator=(const Doodler&);
 
     void updatePosition(const float);
 

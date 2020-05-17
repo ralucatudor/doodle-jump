@@ -31,6 +31,8 @@ GameLoop::GameLoop()
     doodler = std::make_shared<Doodler>(Doodler());
 }
 
+GameLoop::~GameLoop() {}
+
 void GameLoop::pollEvents()
 {
     deltaTime = clock.restart().asSeconds();

@@ -7,9 +7,7 @@ void Platform::draw(sf::RenderTarget &target, sf::RenderStates states) const
 
 Platform::Platform() 
 {
-    // texture.loadFromFile(PLATFORM_FILEPATH);
-    // sprite.setTexture(texture);
-    // sprite.setPosition(position);
+    sprite.setPosition(position);
 
     std::random_device rand_dev;
     std::mt19937 generator(rand_dev());
@@ -20,12 +18,28 @@ Platform::Platform()
     position.y = y(generator);
 }
 
-Platform::Platform(const Platform& ob) 
+Platform::~Platform() {}
+
+Platform::Platform(const Platform& other) 
 {
-    texture = ob.texture;
-    sprite = ob.sprite;
-    position = ob.position;
+    texture = other.texture;
+    sprite = other.sprite;
+    position = other.position;
     sprite.setTexture(texture);
+}
+
+Platform& Platform::operator=(const Platform& other)
+{
+    if (this == &other) {
+        return *this;
+    }
+
+    texture = other.texture;
+    sprite = other.sprite;
+    sprite.setTexture(texture);
+    position = other.position;
+
+    return *this;
 }
 
 void Platform::updatePosition()

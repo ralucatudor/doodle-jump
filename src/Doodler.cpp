@@ -24,12 +24,32 @@ Doodler::Doodler() //: position(sf::Vector2f(WINDOW_WIDTH / 2, 150))
     sprite.setPosition(position);
 }
 
-Doodler::Doodler(const Doodler& ob)         // copy constructor
+Doodler::~Doodler() {}
+
+Doodler::Doodler(const Doodler& other)  
 {
-    texture = ob.texture;
-    sprite = ob.sprite;
+    texture = other.texture;
+    sprite = other.sprite;
     sprite.setTexture(texture);
-    position = ob.position;
+    position = other.position;
+    dy = other.dy;
+    keyboardInput = other.keyboardInput;
+}
+
+Doodler& Doodler::operator=(const Doodler& other)
+{
+    if (this == &other) {
+        return *this;
+    }
+
+    texture = other.texture;
+    sprite = other.sprite;
+    sprite.setTexture(texture);
+    position = other.position;
+    dy = other.dy;
+    keyboardInput = other.keyboardInput;
+
+    return *this;
 }
 
 void Doodler::updatePosition(const float deltaTime)

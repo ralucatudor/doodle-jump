@@ -12,9 +12,11 @@ protected:
 public:
     Platform();
 
-    ~Platform() override = default;
+    ~Platform();        // will also be virtual because virtual-ness propagates to derived classes
 
-    Platform(const Platform& ob); 
+    Platform(const Platform&); 
+
+    Platform& operator=(const Platform&);
 
     void updatePosition();
 

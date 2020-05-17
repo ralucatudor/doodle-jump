@@ -15,6 +15,8 @@ protected:
     
     sf::Sprite sprite;
 public:
+    virtual ~BaseEntity() = 0;
+
     virtual sf::Vector2f getPosition() const = 0;
 
     virtual void setPosition(sf::Vector2f ) = 0;

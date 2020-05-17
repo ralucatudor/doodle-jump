@@ -9,6 +9,8 @@ private:
 public:
     SlowPlatform();
 
+    ~SlowPlatform();
+
     unsigned getDistance() override;
 
     bool getHasCollision() const;

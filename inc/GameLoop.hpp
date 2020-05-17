@@ -30,6 +30,8 @@ private:
     Score<float> totalScore;
 public:
     GameLoop();
+
+    ~GameLoop();
     
     void pollEvents();
 

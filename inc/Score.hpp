@@ -13,10 +13,11 @@ private:
 public:
     Score(T score = 0);
 
+    ~Score();
+
     Score(const Score<T>& ob);
 
     T getScore() const;
-
 
     Score<T>& operator=(const Score<T>& );
 
