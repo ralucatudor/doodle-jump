@@ -59,10 +59,10 @@ void GameLoop::update()
 
 void GameLoop::updateScore()
 {
-    if (doodler->getPosition().y == DOODLER_HEIGHT && doodler->get_dy() < (-1.62)) {
+    if (doodler->getPosition().y == DOODLER_HEIGHT && doodler->get_dy() < (-1.62)) {	// > (-1.62) means that the doodler is jumping on the same platform, therefore the score won't increase 
         Score<float> addScore(0.5);
-		totalScore = totalScore + addScore;
-	}
+        totalScore = totalScore + addScore;
+    }
 }
 
 void GameLoop::redrawFrame()
