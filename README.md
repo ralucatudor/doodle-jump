@@ -29,8 +29,8 @@ The project might include:
 ## Demo
 
 <p>
-<img src="res/screencast/demo.gif" width=49%>
-<img src="res/screencast/final_demo.gif" width=49%>
+<img src="res/screencast/demo.gif" width=30%>
+<img src="res/screencast/final_demo.gif" width=30%>
 </p>
 
 ## Documentation
