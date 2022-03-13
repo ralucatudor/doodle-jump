@@ -35,6 +35,9 @@ The project might include:
 
 The second demo is the ***final version***! If the doodler jumps on the red platfom, that platform disappears. Note that each type of platform _(green - which is the regular one and appears twice as much as the others; red - slow platfom; light blue - fast platform)_ makes the doodler jump a different distance.
 
+Memory leaks have been checked with valgrind and there are no leaks.
+<!-- valgrind --leak-check=full --show-leak-kinds=all --track-origins=yes --verbose --log-file=valgrind-out.txt -->
+
 ## Documentation
 
 See [documentation](documentation.md).
